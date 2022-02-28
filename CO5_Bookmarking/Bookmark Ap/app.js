@@ -1,7 +1,14 @@
+//using open graph API for data meta translation; used google email account
+
 
 const body = document.body;
 const input = document.querySelector('input[type=text]');
 const overlay = document.querySelector('.overlay');
+const apiURL = 'https://opengraph.io/api/1.0/site';
+const appID = '2388e15b-95de-497f-ab45-d8d094ed88cd' //created in open graph
+
+// const myURL = encodeURIComponent('https://www.tileshop.com');
+
 
 
 // ==========    FUNCTIONS
@@ -37,17 +44,35 @@ fillBookmarksList(bookmarks);
 function createBookmark(e) {
     e.preventDefault(); //prevent page from refreshing when form is submitted
     
+    if (!bookmarkInput.value) {
+        alert('we need info!');
+        return;
+    }
+
+    const url = encodeURIComponent(bookmarkInput.value)
 
     //add a new bookmarks to the bookmarks
-    const title = bookmarkInput.value;
-    const bookmark = {
-        title: title
-    };
-    bookmarks.push(bookmark);
-    fillBookmarksList(bookmarks);
-    storeBookmarks(bookmarks);
-    bookmarkForm.reset();
-    console.table(bookmarks)
+    //FETCH META DATA FROM WEBSITE
+    fetch(apiURL + '/' + url + '?app_id=' + appID)
+        .then(response => response.json())
+        .then(data => {
+            const bookmark = {
+                title: data.hybridGraph.title,
+                image: data.hybridGraph.image,
+                link: data.hybridGraph.url
+        };
+        
+        bookmarks.push(bookmark);
+        fillBookmarksList(bookmarks);
+        storeBookmarks(bookmarks);
+        bookmarkForm.reset();
+        // console.table(bookmarks)
+    })
+    .catch(error => {
+        alert('there was a problem getting info');
+
+    });
+
 
 
     //save that bookmarks list to localStorage
@@ -65,8 +90,12 @@ function createBookmark(e) {
 
 //goal is to make array of objects to store in local storage
 function fillBookmarksList(bookmarks = []) {
-    const bookmarksHtml = bookmarks.map((bookmark) => {
-        return `<a href="#" class="bookmark"> ${bookmark.title}</a>`;
+    const bookmarksHtml = bookmarks.map((bookmark, i) => {
+        return `<a href="${bookmark.link}" class="bookmark" data-id"${i}"=>
+        <div class='img' style="background-image:url('${bookmark.image}')" ></div> 
+        <div class="title">${bookmark.title}</div>
+        <span class="glyphicon glyphicon-remove"></span>
+        </a>`;
     }).join('');
     
     // let bookmarksHtml = '';
@@ -78,9 +107,24 @@ function fillBookmarksList(bookmarks = []) {
     // console.table(bookmarksHtml)
 }
 
+function removeBookmark(e) {
+    if (!e.target.matches('.glyphicon-remove')) return; //makes sure you click on the glyphicon, not just the bookmark
+    
+    //find the index
+    const index = e.target.parentNode.dataset.id; //bookmark id dataset
+    //remove from bookmakrs list using splice
+    bookmarks.splice(index, 1);
+    //fill the list w/ new array
+    fillBookmarksList(bookmarks);
+    //store new list to local storage
+    storeBookmarks(bookmarks);
+}
+
 function storeBookmarks(bookmarks = []) {
     localStorage.setItem('bookmarks', JSON.stringify(bookmarks)); //takes array and changes into notation for storage
 } 
 
+
 // event listeners
 bookmarkForm.addEventListener('submit', createBookmark);
+bookmarksList.addEventListener('click', removeBookmark);

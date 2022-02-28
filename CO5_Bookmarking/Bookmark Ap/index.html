@@ -82,13 +82,14 @@
             position: relative;
         }
         .bookmark {
-            display: block;
+            display: flex;
             background: white;
             color: #999;
             padding: 20px;
             transition: 0.3s ease all;
             border-bottom: 1px solid #DDD;
             font-size: 16px;
+            position: relative;
 
         }
 
@@ -107,6 +108,35 @@
             border-bottom-left-radius: 5px;
             border-bottom-right-radius: 5px;
             border-bottom: 0;
+        }
+
+        .bookmark .img {
+            background-color: #DDD;
+            border-radius:  3px;
+            background-image: url('https://images.unsplash.com/photo-1646003607550-4b1b62e3a2d4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1587&q=80.jpg');
+            background-size: cover;
+            background-position: top center;
+            width: 120px;
+            height: 60px;
+            margin-right: 20px;
+    
+        }
+        .bookmark .title {
+            display: flex;
+            align-items: center;
+        }
+        .bookmark .glyphicon-remove {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #EEE;
+            font-size: 12px;
+            transition: 0.3s ease color;
+            cursor: pointer;
+        }
+        .bookmark:hover .glyphicon-remove {
+            color: #aaa;
+
         }
     </style>
 
