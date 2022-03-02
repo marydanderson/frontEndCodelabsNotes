@@ -29,13 +29,16 @@ body {
     border-radius: 50%;
     cursor: pointer;
     border: 3px solid #60a5fa;
+    
   }
-  
+
+ 
+
   form {
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: center;
-    width: clamp(600px, 50%, 700px);
+    width: clamp(200px, 50%, 700px);
     margin: 0 auto;
   }
   
@@ -44,6 +47,10 @@ body {
     font-size: 1rem;
     border-radius: 8px;
     width: 100%;
+  }
+
+  li {
+    padding: 5px;
   }
 
   
@@ -64,14 +71,40 @@ body {
     outline: 3px solid #e11d48;
   }
 
-  .printed-form {
+  .displayed-users{
       background-color: aliceblue;
       opacity: .5;
       margin-top: 20px;
       margin-left: 15%;
       margin-right: 15%;
       margin-bottom: 20px;
-      font-size: 20px;;
-      padding: 10px;
+
+      padding: 20px;
       border-radius: 10px;
+      font-size: 20px;
+      list-style: none;
+      text-align: center;
+
+  }
+
+  .close-btn {
+    position: aboslute;
+    top: 12px;
+    right: 12px;
+    border-radius: 50%;
+    border: none;
+    color: black;
+    background-color: balck;
+    opacity: 0.9;
+    cursor: pointer;
+    transition: 300ms ease all;
+  }
+
+  .horz-center {
+    margin-top: 10px;
+    /* position: relative; */
+    /* margin-left: 50%; */
+    text-align: center;
+    
+
   }
