@@ -8,6 +8,7 @@ const button = document.querySelector(".btn");
 // const formDataAll = document.querySelector("form");
 
 const displayUserList = document.querySelector(".displayed-users");
+const accordDisplayUserList = document.querySelector(".accordion");
 console.log(displayUserList)
 
 // console.log(form)
@@ -37,7 +38,13 @@ function createUser(e) {
         lastName: lastNameInput.value,
         age: ageInput.value,
     }
-    
+ 
+
+    //VALIDATE DATA
+    if (user.firstName == false || user.lastName == false || user.age == false) {
+      alert("Fill in all fields")
+      return
+    }
 
     //add user to master list
     masterUsersList.push(user);
@@ -49,13 +56,11 @@ function createUser(e) {
     //add to local storage
     saveUsersToLocalStorage(masterUsersList)
 
-    //FUTURE: ADD IF STATEMENT TO VALIDATE
-
-    document.forms[0].reset(); //clears form once submitted
-
+    //clears form once submitted
+    document.forms[0].reset(); 
 }
 
-//  FUNCTION: to save to local storage
+//  FUNCTION:     to save to local storage
 function saveUsersToLocalStorage(x = []) {
     localStorage.setItem("List_of_users", JSON.stringify(x));
 }
@@ -94,36 +99,38 @@ function populateUserList(usersParam = []) {
         </li>`
       )
       .join("");
+  // ACCORDIION
+  //     accordDisplayUserList.innerHTML = usersParam
+  //     .map(
+  //       (x, idx) => `
+  //       <h2 class="accordion-header" id="headingOne">
+  //       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+  //         ${x.lastName}, ${x.firstName}
+  //       </button>
+  //     </h2>
+  //     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+  //       <div class="accordion-body">
+  //         <strong>Age ${x.age}</strong>
+  //       </div>
+  //     </div>`
+  //     )
+  //     .join("");
   }
 
 
 
 
 
-// FUTURE FUNCTION: validate users
-// function validateUser() {
+//  FUNCTION: validate users
+// function validateUser(user) {
 //     //validate user fields are filled in
 //     //if user field is not filled in, do not submit the form until all fields are filled in
 
-//     if (firstNameInput.value == '') {
-//         alert('enter first name')
-//         //add label beneath that says 'enter first name'
-//     }
-
-//     if (lastNameInput.value =='') {
-//         alert ('enter last name')
-//     }
-
-
-//     if (age.value =='') {
-//         alert ('enter last age')
+//     if (user.firstName == false || user.lastName == false || user.age == false) {
+//       alert("Fill in all fields")
+//       return
 //     }
 // }
-
-
-//FIX: when refresh, data is erased from list on dispaly, but still shown in storage
-
-
 
 
 // =========== EVENT LISTENERS ================
