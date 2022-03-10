@@ -29,4 +29,3 @@ priceInput.addEventListener('input', calculatePieCost);
 quantityInput.addEventListener('input', calculatePieCost);
 quantityInput.addEventListener('input', updateQuantityLabel);
 
-

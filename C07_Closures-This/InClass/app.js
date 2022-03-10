@@ -134,3 +134,5 @@ function toArray(object) {
 toArray({ 
     a: 1, 
     b: 2 }) 
+    
+  
