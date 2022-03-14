@@ -40,8 +40,8 @@
 
 // <---- =============== MY CODE IS BELOW =============== ---->
 
-baselineGrading = [5, 5, 10, 10, 15, 15, 20, 20]
-baselineTime = 120;
+const baselineGrading = [5, 5, 10, 10, 15, 15, 20, 20];
+const baselineTime = 120;
 
 function compareTime(inputTime) {
     let time = 0;
@@ -61,19 +61,19 @@ function interview(arrayOfTime, totalTime) {
         score = 'disqualified';
     }
     else {
-        for (let i=0; i < 2; i++) { //VERY EASY QUESTION
+        for (let i=0; i < 2; i++) { //VERY EASY QUESTION (5)
             if (arrayOfTime[i] > baselineGrading[i]) {
                 console.log('Exceeded time limit for a very easy question')
                 score='disqualified';
             }
         }
-        for (let i=2; i < 4; i++) { //EASY QUESTION
+        for (let i=2; i < 4; i++) { //EASY QUESTION (10)
             if (arrayOfTime[i] > baselineGrading[i]) {
                 console.log('Exceeded time limit for an easy question')
                 score='disqualified';
             }
         }
-        for (let i=4; i < 6; i++) { //MEDIUM QUESTION
+        for (let i=4; i < 6; i++) { //MEDIUM QUESTION (15)
             if (arrayOfTime[i] > baselineGrading[i]) { 
                 console.log('Exceeded time limit for medium')
                 score='disqualified';
@@ -91,7 +91,7 @@ function interview(arrayOfTime, totalTime) {
 }
 
 
-// interview([5, 5, 10, 10, 15, 15, 20], 120)  
+interview([5, 5, 10, 10, 15, 15, 20], 120)  
 // interview([5, 5, 10, 10, 15, 15, 20, 20], 120);
 // interview([5, 5, 10, 10, 25, 15, 20, 20], 120) ;
 // interview([5, 5, 10, 10, 15, 15, 20], 120) 
