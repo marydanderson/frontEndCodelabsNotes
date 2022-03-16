@@ -43,6 +43,8 @@
 const baselineGrading = [5, 5, 10, 10, 15, 15, 20, 20];
 const baselineTime = 120;
 
+
+// <---- =============== check total time =============== ---->
 function compareTime(inputTime) {
     let time = 0;
     if (inputTime > baselineTime) {
@@ -52,8 +54,8 @@ function compareTime(inputTime) {
 }
 
 
-
 function interview(arrayOfTime, totalTime) {
+    compareTime(totalTime)   
     // see if max time was exceded for individual questions
     let score = 'qualified';
     if (arrayOfTime.length < baselineGrading.length) { //didn't answer all questions
@@ -86,12 +88,12 @@ function interview(arrayOfTime, totalTime) {
             }
         }
     }
-    console.log(score)
-    compareTime(totalTime)    
+    console.log(score);
+ 
 }
 
 
-interview([5, 5, 10, 10, 15, 15, 20], 120)  
+// interview([5, 5, 10, 10, 15, 15, 20], 120)  
 // interview([5, 5, 10, 10, 15, 15, 20, 20], 120);
 // interview([5, 5, 10, 10, 25, 15, 20, 20], 120) ;
-// interview([5, 5, 10, 10, 15, 15, 20], 120) 
+interview([5, 5, 10, 10, 15, 15, 20], 120) 
