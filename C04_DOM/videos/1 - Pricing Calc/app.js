@@ -4,6 +4,7 @@ const priceInput = document.querySelector('[name=price]');
 const quantityInput = document.querySelector('[name=quantity]');
 const total = document.querySelector('.total');
 const quantityLabel = document.querySelector('.qty-label')
+console.log(priceInput)
 
 //create functions we need
 function calculatePieCost() {
