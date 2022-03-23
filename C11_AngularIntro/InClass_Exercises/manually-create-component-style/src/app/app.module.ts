@@ -7,7 +7,8 @@ import { ParagraphListComponent } from './paragraph-list/paragraph-list.componen
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ParagraphListComponent
   ],
   imports: [
     BrowserModule
