@@ -1,2 +1,2 @@
-<p>Server component is running</p>
-<h1>H1 heading</h1>
+<!-- ng style Directive combined w/ property binding -->
+<p [ngStyle]="{backgroundColor: getColor()}" [ngClass]="{online: serverStatus === 'online'}">Server with ID {{ serverId }} is {{ serverStatus }}</p>

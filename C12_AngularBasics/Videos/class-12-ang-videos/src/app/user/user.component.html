@@ -1,9 +1,26 @@
-<div class="user">
-  <input type="text" [(ngModel)]="username">
-  <h5>{{username}}</h5>
-  <button type="button" class="btn btn-primary"
-  [disabled]="username === ''">Reset User</button>
+<div class="user container">
+  <div class="row">
+    <div class="col">
+          <input type="text" [(ngModel)]="username">
+    <h5>{{username}}</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-primary"
+      [disabled]="username ===''">Reset User</button>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-success" (click)="onDisplayDetails()">Display Details</button>
+    </div>
+    <div class="col">
+      <p *ngIf="contentStatus">Secret password = 'tuna'</p>
+      <div *ngFor="let logItem of log">{{log}}</div>
+    </div>
+  </div>
 </div>
+
+
 
 
 

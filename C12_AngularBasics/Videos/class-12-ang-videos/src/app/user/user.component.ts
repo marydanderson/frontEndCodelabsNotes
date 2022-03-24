@@ -7,11 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
   username="username";
+  contentStatus = false;
+  log =[];
+
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onDisplayDetails(){
+    this.contentStatus = !this.contentStatus;
+    this.log.push(this.log.length+1)
+  }
 
 }
