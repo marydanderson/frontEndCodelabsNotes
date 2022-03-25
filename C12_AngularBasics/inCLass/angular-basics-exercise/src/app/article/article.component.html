@@ -1,0 +1,10 @@
+<h1 [ngStyle]="{'background-color': getColor()}">{{title}}</h1>
+<button (click) = "techRelatedStatus()">Change isTechRelated</button>
+<p *ngIf ="isTechRelated else nonTechRelated">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid odit dolorem, et totam iste optio voluptatem quod, reiciendis consequuntur accusamus repellendus corporis saepe tenetur adipisci harum odio iure, dolore vitae.</p>
+
+  <ng-template #nonTechRelated>
+    <p>
+      Not Tech Related
+    </p>
+  </ng-template>
+
