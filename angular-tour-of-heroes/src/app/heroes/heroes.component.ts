@@ -10,7 +10,7 @@ import { HEROES } from 'src/mock-heroes';
 export class HeroesComponent implements OnInit {
 
   heroes = HEROES;
-  selectedHero?: Hero;
+  selectedHero?: Hero; //WHAT DOES THIS MEAN? OR DO?
 
   constructor() { }
 
