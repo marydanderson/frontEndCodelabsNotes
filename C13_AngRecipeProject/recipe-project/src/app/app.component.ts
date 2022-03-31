@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'recipe-project';
-  loadedFeature = 'recipe';
+  loadedFeature = 'recipe'; //in nav bar, for nav bar page change b/t recipe and other header links
 
   onNavigate(feature: string) {
     this.loadedFeature = feature;

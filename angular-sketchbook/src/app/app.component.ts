@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-sketchbook';
+  loadedDessertDetail = '';
+
+  onNavigateToDessertDetail(dessert: string) {
+    this.loadedDessertDetail = dessert;
+  }
 }
