@@ -1,0 +1,9 @@
+.odd {
+  color: lightcoral
+}
+
+.even {
+  font-weight: 300;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow';
+  background-color: blueviolet;
+}
