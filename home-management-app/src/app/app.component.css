@@ -1,0 +1,29 @@
+:root {
+  --main-white: white;
+  --gray: #EFEFEF;
+  --sky: #CAEBF2;
+  --dark-gray: #A9A9A9;
+  --watermelon: #FF3B3F;
+
+  --pane-padding: 5px 42px;
+}
+
+.bg-white {
+  background-color: var(--main-white);
+}
+
+.bg-main-gray {
+  background-color: var(--gray);
+}
+
+.bg-sky {
+  background-color: var(--sky);
+}
+
+.bg-carbon {
+  background-color: var(--dark-gray);
+}
+
+.bg-watermelon {
+  background-color: var(--watermelon);
+}
