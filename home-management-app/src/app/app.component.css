@@ -1,29 +1,19 @@
 :root {
-  --main-white: white;
-  --gray: #EFEFEF;
-  --sky: #CAEBF2;
-  --dark-gray: #A9A9A9;
-  --watermelon: #FF3B3F;
 
   --pane-padding: 5px 42px;
+
+  --light-tan: #EAE7DC;
+  --dark-tan: #d8c3a5;
+  --gray--: #8E8D8A;
+  --light-watermelon: #e98074;
+  --dark-watermelon: #e85a4f;
 }
 
-.bg-white {
-  background-color: var(--main-white);
+.bg-tan {
+    background-color: #EAE7DC;
 }
 
-.bg-main-gray {
-  background-color: var(--gray);
+.bg-dark-tan {
+  background-color: #d8c3a5;
 }
 
-.bg-sky {
-  background-color: var(--sky);
-}
-
-.bg-carbon {
-  background-color: var(--dark-gray);
-}
-
-.bg-watermelon {
-  background-color: var(--watermelon);
-}

@@ -1,20 +1,15 @@
-.bg-white {
-  background-color: white;
+
+.bg-tan {
+  background-color: #EAE7DC;
 }
 
-.bg-main-gray {
-  background-color: #EFEFEF;
+.bg-dark-tan {
+background-color: #d8c3a5;
+
 }
 
-.bg-sky {
-  background-color: #CAEBF2;
+.dark-watermelon-text {
+  color: #e85a4f
 }
 
-.bg-carbon {
-  background-color: #A9A9A9;
-}
-
-.bg-watermelon {
-  background-color: #FF3B3F;
-}
 

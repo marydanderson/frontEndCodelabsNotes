@@ -10,6 +10,7 @@ import { ProjectListComponent } from './project/project-list/project-list.compon
 import { FinancialSummaryComponent } from './financials/financial-summary/financial-summary.component';
 import { RoomComponent } from './rooms/room/room.component';
 import { RoomCarouselComponent } from './rooms/room-carousel/room-carousel.component';
+import { ProjectWishComponent } from './project/project-wish/project-wish.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { RoomCarouselComponent } from './rooms/room-carousel/room-carousel.compo
     ProjectListComponent,
     FinancialSummaryComponent,
     RoomComponent,
-    RoomCarouselComponent
+    RoomCarouselComponent,
+    ProjectWishComponent
   ],
   imports: [
     BrowserModule
