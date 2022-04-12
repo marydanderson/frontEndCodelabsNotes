@@ -11,6 +11,8 @@ import { FinancialSummaryComponent } from './financials/financial-summary/financ
 import { RoomComponent } from './rooms/room/room.component';
 import { RoomCarouselComponent } from './rooms/room-carousel/room-carousel.component';
 import { ProjectWishComponent } from './project/project-wish/project-wish.component';
+import { HomeSummaryComponent } from './home-summary/home-summary.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -23,10 +25,12 @@ import { ProjectWishComponent } from './project/project-wish/project-wish.compon
     FinancialSummaryComponent,
     RoomComponent,
     RoomCarouselComponent,
-    ProjectWishComponent
+    ProjectWishComponent,
+    HomeSummaryComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
