@@ -1,13 +1,16 @@
 
-<app-header (featureSelected) = "onNavigate($event)"></app-header>
+<app-header></app-header>
 <!--bind parent method to child event-->
 <!-- connecst the event in the child (onSelect()) to the method in the parent (onNavigate);
 $event contains the data that the user selects (recipe or shopping-list) -->
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <app-recipes *ngIf="loadedFeature === 'recipe'"></app-recipes>
-      <app-shopping-list *ngIf = "loadedFeature != 'recipe'"></app-shopping-list>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
+
+
+
+

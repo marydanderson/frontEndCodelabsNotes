@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../project.service';
-import { Project } from '../project-item/project.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Project } from '../project-detail/project.model';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 
 @Component({
@@ -11,23 +11,37 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProjectListComponent implements OnInit {
   projectList: Project[] = [];
+  id: number;
+
 
   constructor(
     private projectService: ProjectService,
-    private router: Router,
     private route: ActivatedRoute
     ) { }
 
-  ngOnInit() {
-    this.getProjects()
+  ngOnInit(): void {
+    this.getProjects();
+
+    this.route.paramMap.subscribe((params: ParamMap) => {
+       this.id = +params.get('id');
+    });
+
   }
 
   getProjects() {
-    this.projectList = this.projectService.getProjects()
+    this.projectList = this.projectService.getProjects();
   }
 
-  getProjectDetail() {
-    this.router.navigate(['project-details'], {relativeTo: this.route})
-  }
+
+
+
+
+
+
+
+
+  // getProjectDetail() {
+  //   this.router.navigate(['project-details'], {relativeTo: this.route})
+  // }
 
 }

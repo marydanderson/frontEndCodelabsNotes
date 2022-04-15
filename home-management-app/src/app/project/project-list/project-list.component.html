@@ -1,7 +1,7 @@
 
 <button class="btn btn-primary">Add Project</button>
 
-<div class="container" *ngFor="let project of projectList">
+<div class="container">
   <table class="table table-hover">
     <thead>
       <tr>
@@ -13,13 +13,25 @@
       </tr>
     </thead>
     <tbody>
-      <tr (click)="getProjectDetail">
-        <td scope="row">{{project.name}}</td>
-        <td>{{project.room}}</td>
-        <td>{{project.description}}</td>
-        <td>{{project.status}}</td>
-        <td>{{project.grandTotal}}</td>
-      </tr>
+
+        <tr *ngFor="let projectItem of projectList" >
+
+
+        <td scope="row"><a style="cursor: pointer" [routerLink]="['/project-details', projectItem.id]">{{projectItem.name}}</a></td>
+
+          <td>{{projectItem.room}}</td>
+          <td>{{projectItem.description}}</td>
+          <td>{{projectItem.status}}</td>
+          <td>{{projectItem.grandTotal | currency}}</td>
+        </tr>
+        <h1></h1>
     </tbody>
   </table>
+  <!-- <app-project-detail *ngFor="let projectItem of projectList" [projectInput]="projectItem"></app-project-detail> -->
+
+  <div>
+
+
+  </div>
+
 </div>

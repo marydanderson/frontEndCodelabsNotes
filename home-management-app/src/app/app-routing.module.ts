@@ -8,14 +8,12 @@ import { ProjectDetailComponent } from "./project/project-detail/project-detail.
 
 const appRoutes: Routes = [
   //homepage path
+  { path: "project-details/:id", component: ProjectDetailComponent},
   { path: "", redirectTo: "/homesummary", pathMatch: "full" },
   { path: "homesummary", component: HomeSummaryComponent},
   { path: "maintenance", component: MaintenanceListComponent },
   {
     path: "projects", component: ProjectListComponent,
-    children: [
-      {path: "", component: ProjectDetailComponent}
-    ]
   },
 ]
 

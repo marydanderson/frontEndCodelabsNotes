@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { ProjectService } from '../project.service';
 import { Project } from './project.model';
 
 @Component({
@@ -8,9 +10,18 @@ import { Project } from './project.model';
 })
 export class ProjectDetailComponent implements OnInit {
 
-  constructor() { }
+  project: Project;
+  idx: number;
+  @Input() projectInput: Project;
+
+  constructor(
+    private route: ActivatedRoute,
+    private projectService: ProjectService,
+  ) { }
 
   ngOnInit(): void {
+
   }
+
 
 }
