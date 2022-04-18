@@ -13,6 +13,8 @@ import { ProjectWishComponent } from './project/project-wish/project-wish.compon
 import { HomeSummaryComponent } from './home-summary/home-summary.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProjectDetailComponent } from './project/project-detail/project-detail.component';
+import { ProjectCreateComponent } from './project/project-create/project-create.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,11 +28,14 @@ import { ProjectDetailComponent } from './project/project-detail/project-detail.
     RoomComponent,
     RoomCarouselComponent,
     ProjectWishComponent,
-    HomeSummaryComponent
+    HomeSummaryComponent,
+    ProjectCreateComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    // FormsModule required for template driven form approach
+    ReactiveFormsModule //required for reactive form approach
   ],
   providers: [],
   bootstrap: [AppComponent]
