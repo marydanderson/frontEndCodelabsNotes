@@ -4,6 +4,8 @@ import { HomeSummaryComponent } from "./home-summary/home-summary.component";
 import { MaintenanceListComponent } from "./maintenance/maintenance-list/maintenance-list.component";
 import { ProjectListComponent } from "./project/project-list/project-list.component";
 import { ProjectDetailComponent } from "./project/project-detail/project-detail.component";
+import { ProjectCreateComponent } from "./project/project-create/project-create.component";
+import { NewProjectSubmissionComponent } from "./project/project-create/new-project-submission/new-project-submission.component";
 
 
 const appRoutes: Routes = [
@@ -12,9 +14,15 @@ const appRoutes: Routes = [
   { path: "", redirectTo: "/homesummary", pathMatch: "full" },
   { path: "homesummary", component: HomeSummaryComponent},
   { path: "maintenance", component: MaintenanceListComponent },
-  {
-    path: "projects", component: ProjectListComponent,
+  { path: "projects", component: ProjectListComponent, children:
+    [
+
+    ]
   },
+  {path: "add-new-project", component: ProjectCreateComponent,
+  children: [
+    {path: "project-submission", component: NewProjectSubmissionComponent}
+  ]}
 ]
 
 @NgModule({

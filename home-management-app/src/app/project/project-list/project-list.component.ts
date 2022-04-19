@@ -12,6 +12,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 export class ProjectListComponent implements OnInit {
   projectList: Project[] = [];
   id: number;
+  addNewProject: boolean = false;
 
 
   constructor(
@@ -30,6 +31,11 @@ export class ProjectListComponent implements OnInit {
 
   getProjects() {
     this.projectList = this.projectService.getProjects();
+  }
+
+  addNewProjectTrue() {
+    console.log('new project added');
+    this.addNewProject = true;
   }
 
 

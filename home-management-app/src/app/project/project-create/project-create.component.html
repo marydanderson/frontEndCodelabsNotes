@@ -1,68 +1,91 @@
 <!---------------------- TEMPLATE DRIVEN APPROACH START ------------------------->
-<!-- <h4>Create New Project</h4>
-<form (ngSubmit)="onSubmit()" #f="ngForm">
-  <div class="form-group">
-    <label for="projectID">ID:</label>
-    <input type="number" class="form-control" id="projectID" placeholder="ID" required>
-  </div>
-  <div class="form-group">
-    <label for="projectName">Name:</label>
-    <input type="text"
-      class="form-control"
-      id="projectNamee"
-      placeholder="Enter project name"
-      ngModel name="projectName"
-      required
-      #projectName="ngModel">
-    <span class="help-block" *ngIf="!projectName.valid && projectName.touched">Please enter valid name</span>
-  </div>
-  <div class="form-group">
-    <label for="projectRoom">Room:</label>
-    <input type="text"
-      class="form-control"
-      id="projectRoom"
-      placeholder="Enter project room"
-      ngModel name="projectRoom"
-      required>
-  </div>
-  <div class="form-group">
-    <label for="projectDescription">Description:</label>
-    <textarea
-      class="form-control"
-      id="projectDescription"
-      placeholder="Enter project description"
-      ngModel name="projectDescription"
-      required></textarea>
-  </div>
-  <div class="form-group">
-    <label>Status:</label>
-      <div class="radio" *ngFor="let status of statuses">
-          <input
-            type="radio"
-            name="projectStatus"
-            ngModel
-            [value]="status"
+<div class="container" >
+
+  <div class="row">
+
+    <div class="col-7" *ngIf="!submitted">
+      <h4>Create New Project</h4>
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="form-group">
+          <label for="projectID">ID:</label>
+          <input type="number" class="form-control" id="projectID" placeholder="ID" required>
+        </div>
+        <div class="form-group">
+          <label for="projectName">Name:</label>
+          <input type="text"
+            class="form-control"
+            id="projectNamee"
+            placeholder="Enter project name"
+            ngModel name="projectName"
+            required
+            #projectName="ngModel">
+          <span class="help-block" *ngIf="!projectName.valid && projectName.touched">Please enter valid name</span>
+        </div>
+        <div class="form-group">
+          <label for="projectRoom">Room:</label>
+          <input type="text"
+            class="form-control"
+            id="projectRoom"
+            placeholder="Enter project room"
+            ngModel name="projectRoom"
             required>
-            {{status}}
+        </div>
+        <div class="form-group">
+          <label for="projectDescription">Description:</label>
+          <textarea
+            class="form-control"
+            id="projectDescription"
+            placeholder="Enter project description"
+            ngModel name="projectDescription"
+            required></textarea>
+        </div>
+        <div class="form-check">
+          <label>Status:</label>
+            <div class="radio" *ngFor="let status of statuses">
+                <input
+                  type="radio"
+                  name="projectStatus"
+                  ngModel
+                  [value]="status"
+                  required>
+                  {{status}}
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="projectGrandTotal">Grand Total:</label>
+          <input type="number" class="form-control" id="projectGrandTotal" placeholder="Enter grand total" ngModel name="grandTotal">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+      </form>
+    </div>
+
+    <!-- show data submitted data -->
+    <div class="col-8 mx-auto">
+      <div *ngIf="submitted">
+        <div>
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">SUCCESS! New Project Added:</h4>
+            <p>Project name: {{project.name}}</p>
+            <p>Project Descrip: {{project.description}} </p>
+            <p>Project Status: {{project.status}} </p>
+            <p>Project Grand Total: {{project.grandTotal}} </p>
+            <div class="text-center">
+              <a href="/add-new-project" class="btn btn-primary mx-2">Add Another Project</a>
+              <a href="/projects" class="btn btn-secondary">Return to All Projects</a>
+              <a href="" class="btn btn-secondary mx-2">View Project</a> <!--NEED TO EDIT ROUTE TO NEWLY ADDED PROJECT-->
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="projectGrandTotal">Grand Total:</label>
-    <input type="number" class="form-control" id="projectGrandTotal" placeholder="Enter grand total" ngModel name="grandTotal">
-  </div>
-  <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
-</form>
+
+</div>
 
 
 <hr>
 
-<div *ngIf="submitted">
-  <h3>Your Data:</h3>
-  <p>Project name: {{project.name}}</p>
-  <p>Project Descrip: {{project.description}} </p>
-  <p>Project Status: {{project.status}} </p>
-  <p>Project Grand Total: {{project.grandTotal}} </p>
-</div> -->
 
 <!---------------------- TEMPLATE DRIVEN APPROACH END ------------------------->
 
@@ -72,7 +95,7 @@
 <!---------------------- REACTIVE DRIVEN APPROACH START ------------------------->
 
 
-<h4>Create New Project REACTIVE APPROACH</h4>
+<!-- <h4>Create New Project REACTIVE APPROACH</h4>
 <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="projectID">ID:</label>
@@ -125,7 +148,7 @@
 </form>
 
 
-<hr>
+<hr> -->
 
 <!-- SHOW FORM DATA -->
 <!-- <div *ngIf="submitted">

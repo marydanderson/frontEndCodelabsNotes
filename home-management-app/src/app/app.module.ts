@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ProjectDetailComponent } from './project/project-detail/project-detail.component';
 import { ProjectCreateComponent } from './project/project-create/project-create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NewProjectSubmissionComponent } from './project/project-create/new-project-submission/new-project-submission.component';
 
 @NgModule({
   declarations: [
@@ -29,13 +30,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RoomCarouselComponent,
     ProjectWishComponent,
     HomeSummaryComponent,
-    ProjectCreateComponent
+    ProjectCreateComponent,
+    NewProjectSubmissionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    // FormsModule required for template driven form approach
-    ReactiveFormsModule //required for reactive form approach
+    FormsModule
+    // ReactiveFormsModule //required for reactive form approach
   ],
   providers: [],
   bootstrap: [AppComponent]
