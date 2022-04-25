@@ -16,6 +16,12 @@ import { ProjectDetailComponent } from './project/project-detail/project-detail.
 import { ProjectCreateComponent } from './project/project-create/project-create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewProjectSubmissionComponent } from './project/project-create/new-project-submission/new-project-submission.component';
+import { DropdownDirective } from './shared/dropdown.directive';
+import { ClickOutDirective } from './shared/click-out.directive';
+import { InspirationComponent } from './project/inspiration/inspiration.component';
+import { WorkBreakdownComponent } from './project/work-breakdown/work-breakdown.component';
+import { ProjectNavbarComponent } from './project/project-detail/project-navbar/project-navbar.component';
+import { ProjectFinancialsComponent } from './project/project-detail/project-financials/project-financials.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +37,14 @@ import { NewProjectSubmissionComponent } from './project/project-create/new-proj
     ProjectWishComponent,
     HomeSummaryComponent,
     ProjectCreateComponent,
-    NewProjectSubmissionComponent
+    NewProjectSubmissionComponent,
+    DropdownDirective,
+    ClickOutDirective,
+    InspirationComponent,
+    WorkBreakdownComponent,
+    ProjectNavbarComponent,
+    ProjectFinancialsComponent,
+
   ],
   imports: [
     BrowserModule,

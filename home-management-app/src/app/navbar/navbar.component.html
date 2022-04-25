@@ -10,20 +10,25 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/maintenance" routerLinkActive="active">Maintenance</a>
+          <li class="nav-item dropdown" appDropdown>
+            <a class="nav-link" routerLink="/maintenance" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Maintenance
+              <span class=dropdown-toggle></span></a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item">Schedule</a>
+              <a class="dropdown-item">Circuit Breaker Diagram</a>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link">Financials</a>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown" appDropdown>
             <a class="nav-link dropdown-toggle" routerLink="/projects" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Projects
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item">Future Projects</a>
               <a class="dropdown-item">Past Projects</a>
-              <div class="dropdown-divider"></div>
               <a class="dropdown-item">All Projects</a>
             </div>
           </li>

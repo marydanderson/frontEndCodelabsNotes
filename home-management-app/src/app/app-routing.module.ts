@@ -6,17 +6,22 @@ import { ProjectListComponent } from "./project/project-list/project-list.compon
 import { ProjectDetailComponent } from "./project/project-detail/project-detail.component";
 import { ProjectCreateComponent } from "./project/project-create/project-create.component";
 import { NewProjectSubmissionComponent } from "./project/project-create/new-project-submission/new-project-submission.component";
+import { InspirationComponent } from "./project/inspiration/inspiration.component";
+import { WorkBreakdownComponent } from "./project/work-breakdown/work-breakdown.component";
+import { ProjectFinancialsComponent } from "./project/project-detail/project-financials/project-financials.component";
 
 
 const appRoutes: Routes = [
-  //homepage path
-  { path: "project-details/:id", component: ProjectDetailComponent},
+  { path: "project-details/:id", component: ProjectDetailComponent, children: [
+    { path: "inspiration", component: InspirationComponent},
+    { path: "work-breakdown", component: WorkBreakdownComponent},
+    { path: "financials", component: ProjectFinancialsComponent}
+  ]},
   { path: "", redirectTo: "/homesummary", pathMatch: "full" },
   { path: "homesummary", component: HomeSummaryComponent},
   { path: "maintenance", component: MaintenanceListComponent },
   { path: "projects", component: ProjectListComponent, children:
     [
-
     ]
   },
   {path: "add-new-project", component: ProjectCreateComponent,

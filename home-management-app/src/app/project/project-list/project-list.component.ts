@@ -21,11 +21,20 @@ export class ProjectListComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.getProjects();
+    // use service to set local "projectList" to array in Service/Blogabl "myProjects" array
+    this.projectList = this.projectService.getProjects();
+
+    // subscribe to projectService & listern to projectListChanged Emitter to get all globabl updates inside this component
+    this.projectService.projectListChanged.subscribe((projects: Project[]) => {
+      this.projectList = projects;
+    });
 
     this.route.paramMap.subscribe((params: ParamMap) => {
        this.id = +params.get('id');
-    });
+
+    // ADD REMOVE PROJECT
+
+     });
 
   }
 
@@ -38,16 +47,12 @@ export class ProjectListComponent implements OnInit {
     this.addNewProject = true;
   }
 
+  // When indv. 'edit' button is clicked for a project, go to the form to edit it
+  onEditItem(index: number) {
+    // tell project service that this index needs to be listened to in the subject.
+    this.projectService.startedEditing.next(index)
+  }
 
 
-
-
-
-
-
-
-  // getProjectDetail() {
-  //   this.router.navigate(['project-details'], {relativeTo: this.route})
-  // }
 
 }

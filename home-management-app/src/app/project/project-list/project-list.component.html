@@ -12,19 +12,33 @@
             <th scope="col">Description</th>
             <th scope="col">Status</th>
             <th scope="col">Total Cost</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let projectItem of projectList" >
-            <td scope="row"><a style="cursor: pointer" [routerLink]="['/project-details', projectItem.id]">{{projectItem.name}}</a></td>
+            <tr *ngFor="let projectItem of projectList; let i = index" >
+            <td scope="row"><a style="cursor: pointer"[routerLink]="['/project-details', i]" >{{projectItem.name}}</a></td>
               <td>{{projectItem.room}}</td>
               <td>{{projectItem.description}}</td>
               <td>{{projectItem.status}}</td>
               <td>{{projectItem.grandTotal | currency}}</td>
+              <td>
+                <div class="dropdown" appDropdown>
+                  <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" role="button" >Actions</button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" (click)="onEditItem(i)" style="cursor: pointer">Edit</a>
+                      <a class="dropdown-item">Delete</a>
+                    </div>
+                </div>
+              </td>
+              <td>{{i}}</td>
             </tr>
         </tbody>
       </table>
     </div>
   </div>
 </div>
+<app-project-create></app-project-create>
 
+
+<!-- [routerLink]="['/project-details', projectItem.id]" -->
