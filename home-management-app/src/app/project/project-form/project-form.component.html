@@ -12,7 +12,8 @@
             class="form-control"
             id="projectNamee"
             placeholder="Enter project name"
-            ngModel name="projectName"
+            [ngModel] = "projectDetails.name"
+            name="projectName"
             required
             #projectName="ngModel">
           <span class="help-block" *ngIf="!projectName.valid && projectName.touched">Please enter valid name</span>
@@ -23,7 +24,8 @@
             class="form-control"
             id="projectRoom"
             placeholder="Enter project room"
-            ngModel name="projectRoom"
+            [ngModel]= "projectDetails.room"
+             name="projectRoom"
             required>
         </div>
         <div class="form-group">
@@ -32,7 +34,8 @@
             class="form-control"
             id="projectDescription"
             placeholder="Enter project description"
-            ngModel name="projectDescription"
+            [ngModel] = "projectDetails.description"
+            name="projectDescription"
             ></textarea>
         </div>
         <div class="form-check">
@@ -54,7 +57,7 @@
             class="form-control"
             id="projectGrandTotal"
             placeholder="Enter grand total"
-            ngModel
+            [ngModel]="projectDetails.grandTotal"
             name="grandTotal"
             required
             pattern="^[1-9]+[0-9]*$"> <!--enter number > 0-->
@@ -70,14 +73,13 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">SUCCESS! New Project Added:</h4>
-            <p>Project name: {{project.name}}</p>
-            <p>Project Descrip: {{project.description}} </p>
-            <p>Project Status: {{project.status}} </p>
-            <p>Project Grand Total: {{project.grandTotal}} </p>
+            <p>Project name: {{projectDetails.name}}</p>
+            <p>Project Descrip: {{projectDetails.description}} </p>
+            <p>Project Status: {{projectDetails.status}} </p>
+            <p>Project Grand Total: {{projectDetails.grandTotal}} </p>
             <div class="text-center">
-              <a href="/add-new-project" class="btn btn-primary mx-2">Add Another Project</a>
-              <a href="/projects" class="btn btn-secondary">Return to All Projects</a>
-              <a href="" class="btn btn-secondary mx-2">View Project</a> <!--NEED TO EDIT ROUTE TO NEWLY ADDED PROJECT-->
+              <a routerLink="/add-new-project" class="btn btn-primary mx-2">Add Another Project</a>
+              <a routerLink="/projects" class="btn btn-secondary">Return to All Projects</a>
             </div>
           </div>
         </div>

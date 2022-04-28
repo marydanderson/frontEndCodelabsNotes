@@ -2,6 +2,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { Project } from './project-detail/project.model';
+import { ProjectScope } from './project-scope.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,17 +20,18 @@ export class ProjectService {
       // 1,
       'Full Kitchen Remodel',
       'kitchen',
-      'new cabinets, dmeo walls, appliances',
+      'new cabinets, demo walls, appliances',
       'future',
       30000
     ),
     new Project(
       // 1,
-      'Full Kitchen Remodel',
-      'kitchen',
-      'new cabinets, dmeo walls, appliances',
+      'Mater Bath Full Remodel',
+      'master bath',
+      'connvert jetted tub to walk in shower, revamp vanity, new light fixtures',
       'future',
-      30000
+      8000,
+      new ProjectScope('scope item 1')
     )
 
     // { id: 0,
@@ -70,6 +72,12 @@ export class ProjectService {
       this.myProjects.splice(idx,1)
       this.projectListChanged.emit(this.myProjects.slice())
     }
+  }
+
+  // Upate project when edited
+  updateProject(idx: number, newProjectInfo: Project) {
+    this.myProjects[idx] = newProjectInfo;
+    this.projectListChanged.next(this.myProjects.slice())
   }
 
 }

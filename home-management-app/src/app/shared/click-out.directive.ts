@@ -1,26 +1,17 @@
-import { Directive, ElementRef, EventEmitter, HostListener, Output } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { AfterViewInit, Directive, ElementRef, EventEmitter, HostListener, Inject, Output } from '@angular/core';
+import { filter } from 'rxjs';
+import { fromEvent } from 'rxjs';
 
 
 @Directive({
   selector: '[appClickOut]'
 })
-export class ClickOutDirective {
+export class ClickOutDirective  {
 
-  constructor(private elementRef: ElementRef) { }
+  constructor(private elementRef: ElementRef, @Inject(DOCUMENT) private document: Document) { }
 
-  @Output() public clickOutside = new EventEmitter<MouseEvent>();
 
-  @HostListener('document:click', ['$event', '$event.target'])
-
-  public onClick(event: MouseEvent, targetElement: HTMLElement): void {
-    if (!targetElement) {
-      return;
-    }
-
-    const clickedInside = this.elementRef.nativeElement.cotains(targetElement);
-    if (!clickedInside) {
-      this.clickOutside.emit(event)
-    }
-  }
 
 }
+

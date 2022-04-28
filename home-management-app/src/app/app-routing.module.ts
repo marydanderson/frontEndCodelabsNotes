@@ -4,18 +4,20 @@ import { HomeSummaryComponent } from "./home-summary/home-summary.component";
 import { MaintenanceListComponent } from "./maintenance/maintenance-list/maintenance-list.component";
 import { ProjectListComponent } from "./project/project-list/project-list.component";
 import { ProjectDetailComponent } from "./project/project-detail/project-detail.component";
-import { ProjectCreateComponent } from "./project/project-create/project-create.component";
-import { NewProjectSubmissionComponent } from "./project/project-create/new-project-submission/new-project-submission.component";
+import { ProjectFormComponent } from "./project/project-form/project-form.component";
+import { NewProjectSubmissionComponent } from "./project/project-form/new-project-submission/new-project-submission.component";
 import { InspirationComponent } from "./project/inspiration/inspiration.component";
 import { WorkBreakdownComponent } from "./project/work-breakdown/work-breakdown.component";
 import { ProjectFinancialsComponent } from "./project/project-detail/project-financials/project-financials.component";
+import { ProjectCardComponent } from "./project/project-detail/project-card/project-card.component";
 
 
 const appRoutes: Routes = [
   { path: "project-details/:id", component: ProjectDetailComponent, children: [
     { path: "inspiration", component: InspirationComponent},
     { path: "work-breakdown", component: WorkBreakdownComponent},
-    { path: "financials", component: ProjectFinancialsComponent}
+    { path: "financials", component: ProjectFinancialsComponent},
+    { path: "general", component: ProjectCardComponent}
   ]},
   { path: "", redirectTo: "/homesummary", pathMatch: "full" },
   { path: "homesummary", component: HomeSummaryComponent},
@@ -24,7 +26,7 @@ const appRoutes: Routes = [
     [
     ]
   },
-  {path: "add-new-project", component: ProjectCreateComponent,
+  {path: "add-new-project", component: ProjectFormComponent,
   children: [
     {path: "project-submission", component: NewProjectSubmissionComponent}
   ]}

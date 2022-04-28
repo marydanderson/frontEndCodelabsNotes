@@ -1,3 +1,5 @@
+import { ProjectScope } from "../project-scope.model";
+
 export class Project {
   constructor(
     // public id: number,
@@ -5,6 +7,7 @@ export class Project {
     public room: string,
     public description: string,
     public status: string,
-    public grandTotal: number
+    public grandTotal: number,
+    public scope?: ProjectScope,
   ) {}
 }

@@ -31,15 +31,17 @@ export class ProjectListComponent implements OnInit {
 
     this.route.paramMap.subscribe((params: ParamMap) => {
        this.id = +params.get('id');
-
-    // ADD REMOVE PROJECT
-
      });
 
   }
 
   getProjects() {
     this.projectList = this.projectService.getProjects();
+  }
+
+  removeProject(index: number) {
+    this.projectService.removeproject(index);
+
   }
 
   addNewProjectTrue() {
@@ -51,6 +53,8 @@ export class ProjectListComponent implements OnInit {
   onEditItem(index: number) {
     // tell project service that this index needs to be listened to in the subject.
     this.projectService.startedEditing.next(index)
+    console.log(this.projectService.startedEditing)
+    console.log(index)
   }
 
 

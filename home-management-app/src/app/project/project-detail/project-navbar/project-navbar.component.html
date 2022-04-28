@@ -4,7 +4,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" href="#">General Details <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" [routerLink]="['/project-details', id, 'general']" >General Details <span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link" [routerLink]="['/project-details', id, 'inspiration']">Inspriation</a> <!--NEED TO FIX ID-->
       <a class="nav-item nav-link" [routerLink]="['/project-details', id, 'work-breakdown']">Work Breakdown</a>
       <a class="nav-item nav-link" [routerLink]="['/project-details', id, 'financials']">Financials</a>

@@ -1,11 +1,19 @@
 <div class="container">
-  <h2><span>{{project.name}} </span>Project</h2>
+  <div class="row">
+    <div class="col-8">
+      <h2><span>{{project.name}} </span>Project</h2>
+    </div>
+    <div class="col text-right">
+      <button class="btn btn-primary" type="button" routerLink="/add-new-project">Edit</button>
+
+    </div>
+
+  </div>
   <h5>{{project.room}}: {{project.status}}</h5>
+  <p>{{project.scope.name}}</p>
+
   <app-project-navbar></app-project-navbar>
-  <!-- <ul class="list-group list-group-flush">
-    <li class="list-group-item">Description: {{project.description}}</li>
-    <li class="list-group-item">{{project.grandTotal | currency}}</li>
-  </ul> -->
+
   <router-outlet></router-outlet>
 </div>
 

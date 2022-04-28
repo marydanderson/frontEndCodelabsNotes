@@ -13,15 +13,17 @@ import { ProjectWishComponent } from './project/project-wish/project-wish.compon
 import { HomeSummaryComponent } from './home-summary/home-summary.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProjectDetailComponent } from './project/project-detail/project-detail.component';
-import { ProjectCreateComponent } from './project/project-create/project-create.component';
+import { ProjectFormComponent } from './project/project-form/project-form.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NewProjectSubmissionComponent } from './project/project-create/new-project-submission/new-project-submission.component';
+import { NewProjectSubmissionComponent } from './project/project-form/new-project-submission/new-project-submission.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { ClickOutDirective } from './shared/click-out.directive';
 import { InspirationComponent } from './project/inspiration/inspiration.component';
 import { WorkBreakdownComponent } from './project/work-breakdown/work-breakdown.component';
 import { ProjectNavbarComponent } from './project/project-detail/project-navbar/project-navbar.component';
 import { ProjectFinancialsComponent } from './project/project-detail/project-financials/project-financials.component';
+import { ProjectCardComponent } from './project/project-detail/project-card/project-card.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,7 @@ import { ProjectFinancialsComponent } from './project/project-detail/project-fin
     RoomCarouselComponent,
     ProjectWishComponent,
     HomeSummaryComponent,
-    ProjectCreateComponent,
+    ProjectFormComponent,
     NewProjectSubmissionComponent,
     DropdownDirective,
     ClickOutDirective,
@@ -44,6 +46,7 @@ import { ProjectFinancialsComponent } from './project/project-detail/project-fin
     WorkBreakdownComponent,
     ProjectNavbarComponent,
     ProjectFinancialsComponent,
+    ProjectCardComponent,
 
   ],
   imports: [
