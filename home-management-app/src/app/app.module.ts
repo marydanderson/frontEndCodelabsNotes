@@ -24,6 +24,7 @@ import { WorkBreakdownComponent } from './project/work-breakdown/work-breakdown.
 import { ProjectNavbarComponent } from './project/project-detail/project-navbar/project-navbar.component';
 import { ProjectFinancialsComponent } from './project/project-detail/project-financials/project-financials.component';
 import { ProjectCardComponent } from './project/project-detail/project-card/project-card.component';
+import { WorkFormComponent } from './project/work-breakdown/work-form/work-form.component';
 
 @NgModule({
   declarations: [
@@ -47,13 +48,14 @@ import { ProjectCardComponent } from './project/project-detail/project-card/proj
     ProjectNavbarComponent,
     ProjectFinancialsComponent,
     ProjectCardComponent,
+    WorkFormComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
-    // ReactiveFormsModule //required for reactive form approach
+    FormsModule,
+    ReactiveFormsModule //required for reactive form approach
   ],
   providers: [],
   bootstrap: [AppComponent]

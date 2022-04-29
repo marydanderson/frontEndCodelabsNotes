@@ -1,13 +1,15 @@
+
+
 export class ProjectScope {
   constructor(
     public name: string,
     public details?: string,
     public qty?: number,
     public qtyUnit?: string,
-    private unitPrice?: number,
-    private calculatedPrice?: number,
-    private url?: string,
-    private photo?: string
+    public unitPrice?: number,
+    public calculatedPrice?: number,
+    public url?: string,
+    public photo?: string
   ) {}
 }
 

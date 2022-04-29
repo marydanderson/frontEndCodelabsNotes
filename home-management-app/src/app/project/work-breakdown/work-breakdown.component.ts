@@ -23,13 +23,19 @@ export class WorkBreakdownComponent implements OnInit {
     //   console.log(this.id)
     // })
 
-    this.route.paramMap.subscribe(params => {
-      this.id = +params.get('id');
+    this.route.parent.params.subscribe((params: Params) => {
+      this.id = +params['id'];
+      this.project = this.projectService.getProject(this.id)
       console.log(this.id)
     })
 
 
     // this.project = this.projectService.getProject(this.id)
     // console.log(this.project)
+  }
+
+  addScope() {
+    console.log('test')
+
   }
 }

@@ -22,7 +22,8 @@ export class ProjectService {
       'kitchen',
       'new cabinets, demo walls, appliances',
       'future',
-      30000
+      30000,
+      new ProjectScope('scope item 1')
     ),
     new Project(
       // 1,
@@ -31,7 +32,16 @@ export class ProjectService {
       'connvert jetted tub to walk in shower, revamp vanity, new light fixtures',
       'future',
       8000,
-      new ProjectScope('scope item 1')
+      new ProjectScope(
+        'Shower wall tile',
+        'glass wall tile for 3 sides of wall',
+        100,
+        'SF',
+        4,
+        100,
+        'N/A',
+        'N/A'
+        )
     )
 
     // { id: 0,
