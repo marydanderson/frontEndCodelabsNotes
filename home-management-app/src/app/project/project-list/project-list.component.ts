@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../project.service';
 import { Project } from '../project-detail/project.model';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -17,10 +19,13 @@ export class ProjectListComponent implements OnInit {
 
   constructor(
     private projectService: ProjectService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private http: HttpClient,
     ) { }
 
   ngOnInit(): void {
+    // http request to pre load projects in database
+    this.fetchProjects();
     // use service to set local "projectList" to array in Service/Blogabl "myProjects" array
     this.projectList = this.projectService.getProjects();
 
@@ -37,6 +42,8 @@ export class ProjectListComponent implements OnInit {
 
   getProjects() {
     this.projectList = this.projectService.getProjects();
+    this.fetchProjects();
+
   }
 
   removeProject(index: number) {
@@ -57,6 +64,23 @@ export class ProjectListComponent implements OnInit {
     console.log(index)
   }
 
-
+  // create method that can be reused to fetch data from http
+  private fetchProjects() {
+      // use http request w firebase to fetch projects
+      this.http.get< {[key: string]: Project}>('https://house-management-91707-default-rtdb.firebaseio.com/projects.json')
+      // transform database given object to usable array
+      .pipe(map((responseData: {[key: string]: Project}) => {
+        const projectsArray: Project[] = [];
+        for (const key in responseData) {
+          if (responseData.hasOwnProperty(key)) {
+            projectsArray.push({ ...responseData[key], id: key})
+          }
+        }
+        return projectsArray
+      }))
+      .subscribe(projects => {
+        this.projectList = projects
+      })
+  }
 
 }

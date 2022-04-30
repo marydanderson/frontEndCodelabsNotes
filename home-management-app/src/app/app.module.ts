@@ -25,6 +25,7 @@ import { ProjectNavbarComponent } from './project/project-detail/project-navbar/
 import { ProjectFinancialsComponent } from './project/project-detail/project-financials/project-financials.component';
 import { ProjectCardComponent } from './project/project-detail/project-card/project-card.component';
 import { WorkFormComponent } from './project/work-breakdown/work-form/work-form.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { WorkFormComponent } from './project/work-breakdown/work-form/work-form.
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule //required for reactive form approach
+    ReactiveFormsModule, //required for reactive form approach
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
@@ -13,7 +14,7 @@ export class ProjectService {
   projectListChanged = new EventEmitter<Project[]>();
   startedEditing = new Subject<number>();
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   private myProjects: Project[] = [
     new Project(
@@ -43,19 +44,6 @@ export class ProjectService {
         'N/A'
         )
     )
-
-    // { id: 0,
-    //   name: 'Full Kitchen Remodel',
-    //   room: 'kitchen',
-    //   description: 'new cabinets, take down walls, appliances',
-    //   status: 'future',
-    //   grandTotal: 30000 },
-    // { id: 1,
-    //   name: 'Master Bathroom Full Remodel',
-    //   room: 'master bath',
-    //   description: 'new cabinets, take down walls, appliances',
-    //   status: 'future',
-    //   grandTotal: 8000 }
   ]
 
   // Compile Projects
@@ -72,8 +60,19 @@ export class ProjectService {
 
   // Create new project
   addProject(project: Project) {
-    this.myProjects.push(project);
-    this.projectListChanged.emit(this.myProjects.slice());
+    // this.myProjects.push(project);
+    // this.projectListChanged.emit(this.myProjects.slice());
+
+    // http request
+    // submit and store to firebase database
+    let projectData: Project;
+    this.http.post(
+      'https://house-management-91707-default-rtdb.firebaseio.com/projects.json',
+      projectData
+      // subscribe to the post request so angular follows thru w/ the response since its listened to
+    ).subscribe(responseData => {
+      console.log(responseData)
+    });
   }
 
   // Delete project

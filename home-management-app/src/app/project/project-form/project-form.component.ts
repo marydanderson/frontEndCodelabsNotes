@@ -1,5 +1,6 @@
 // -------------TEMPLATE DRIVEN APPROACH START --------
 
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild, OnChanges, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Params, Router } from '@angular/router';
@@ -32,9 +33,12 @@ export class ProjectFormComponent implements OnInit {
   editedItemIndex: number;
   editedProject: Project;
 
-  constructor( private projectService: ProjectService, private route: ActivatedRoute, router: Router) { }
-
-
+  constructor(
+    private projectService: ProjectService,
+    private route: ActivatedRoute,
+    router: Router,
+    private http: HttpClient,
+    ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -67,7 +71,8 @@ export class ProjectFormComponent implements OnInit {
   //   // this.projectForm.reset();
   // }
 
-  onSubmit(formObj: NgForm) {
+  // onSubmit(formObj: NgForm) {
+  onSubmit(projectData: Project) {
     // Destructor project properties; values need to match name on the formgroups
     const { projectName, projectRoom, projectDescription, projectStatus, grandTotal} = formObj.value;
 
@@ -80,14 +85,16 @@ export class ProjectFormComponent implements OnInit {
       grandTotal
     );
 
-    if (this.editMode) {
-      // Edit existing project
-      this.projectService.updateProject(this.id, this.projectDetails);
-    } else {
-      // Create new project
-      this.projectService.addProject(this.projectDetails);
-      this.submitted = true;
-    }
+    this.projectService.addProject(this.projectDetails);
+
+    // if (this.editMode) {
+    //   // Edit existing project
+    //   this.projectService.updateProject(this.id, this.projectDetails);
+    // } else {
+    //   // Create new project
+    //   this.projectService.addProject(this.projectDetails);
+    //   this.submitted = true;
+    // }
 
   }
 
