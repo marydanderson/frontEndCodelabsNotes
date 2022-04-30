@@ -74,27 +74,27 @@ export class ProjectFormComponent implements OnInit {
   // onSubmit(formObj: NgForm) {
   onSubmit(projectData: Project) {
     // Destructor project properties; values need to match name on the formgroups
-    const { projectName, projectRoom, projectDescription, projectStatus, grandTotal} = formObj.value;
+    // const { projectName, projectRoom, projectDescription, projectStatus, grandTotal} = this.projectForm.value;
 
-    // Assign our blank project details to formValues inputted
-    this.projectDetails = new Project(
-      projectName,
-      projectRoom,
-      projectDescription,
-      projectStatus,
-      grandTotal
-    );
+    // // Assign our blank project details to formValues inputted
+    // this.projectDetails = new Project(
+    //   projectName,
+    //   projectRoom,
+    //   projectDescription,
+    //   projectStatus,
+    //   grandTotal
+    // );
+    console.log(projectData)
 
-    this.projectService.addProject(this.projectDetails);
 
-    // if (this.editMode) {
-    //   // Edit existing project
-    //   this.projectService.updateProject(this.id, this.projectDetails);
-    // } else {
-    //   // Create new project
-    //   this.projectService.addProject(this.projectDetails);
-    //   this.submitted = true;
-    // }
+    if (this.editMode) {
+      // Edit existing project
+      this.projectService.updateProject(this.id, this.projectDetails);
+    } else {
+      // Create new project
+      this.projectService.addProject(projectData);
+      this.submitted = true;
+    }
 
   }
 

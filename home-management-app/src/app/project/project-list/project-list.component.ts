@@ -25,14 +25,11 @@ export class ProjectListComponent implements OnInit {
 
   ngOnInit(): void {
     // http request to pre load projects in database
-    this.fetchProjects();
-    // use service to set local "projectList" to array in Service/Blogabl "myProjects" array
-    this.projectList = this.projectService.getProjects();
-
-    // subscribe to projectService & listern to projectListChanged Emitter to get all globabl updates inside this component
-    this.projectService.projectListChanged.subscribe((projects: Project[]) => {
+    this.projectService.getProjects().subscribe( projects => {
       this.projectList = projects;
-    });
+    })
+    console.log(this.projectList)
+
 
     this.route.paramMap.subscribe((params: ParamMap) => {
        this.id = +params.get('id');
@@ -41,9 +38,11 @@ export class ProjectListComponent implements OnInit {
   }
 
   getProjects() {
-    this.projectList = this.projectService.getProjects();
-    this.fetchProjects();
-
+    // receive data from the server and subscribe to any changes in the data
+    this.projectService.getProjects().subscribe( projects => {
+      // make data fetched from server equal to this component's variables for displaying
+      this.projectList = projects;
+    })
   }
 
   removeProject(index: number) {
@@ -65,22 +64,5 @@ export class ProjectListComponent implements OnInit {
   }
 
   // create method that can be reused to fetch data from http
-  private fetchProjects() {
-      // use http request w firebase to fetch projects
-      this.http.get< {[key: string]: Project}>('https://house-management-91707-default-rtdb.firebaseio.com/projects.json')
-      // transform database given object to usable array
-      .pipe(map((responseData: {[key: string]: Project}) => {
-        const projectsArray: Project[] = [];
-        for (const key in responseData) {
-          if (responseData.hasOwnProperty(key)) {
-            projectsArray.push({ ...responseData[key], id: key})
-          }
-        }
-        return projectsArray
-      }))
-      .subscribe(projects => {
-        this.projectList = projects
-      })
-  }
 
 }

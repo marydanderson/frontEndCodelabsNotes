@@ -5,14 +5,14 @@
 
     <div class="col-7" *ngIf="!submitted">
       <h4>Create New Project</h4>
-      <form (ngSubmit)="onSubmit(projectForm)" #projectForm="ngForm">
+      <form (ngSubmit)="onSubmit(projectForm.value)" #projectForm="ngForm">
         <div class="form-group">
           <label for="projectName">Name:</label>
           <input type="text"
             class="form-control"
             id="projectNamee"
             placeholder="Enter project name"
-            [ngModel] = "projectDetails.name"
+            ngModel
             name="projectName"
             required
             #projectName="ngModel">
@@ -24,7 +24,7 @@
             class="form-control"
             id="projectRoom"
             placeholder="Enter project room"
-            [ngModel]= "projectDetails.room"
+            ngModel
              name="projectRoom"
             required>
         </div>
@@ -34,7 +34,7 @@
             class="form-control"
             id="projectDescription"
             placeholder="Enter project description"
-            [ngModel] = "projectDetails.description"
+            ngModel
             name="projectDescription"
             ></textarea>
         </div>
@@ -57,7 +57,7 @@
             class="form-control"
             id="projectGrandTotal"
             placeholder="Enter grand total"
-            [ngModel]="projectDetails.grandTotal"
+            ngModel
             name="grandTotal"
             required
             pattern="^[1-9]+[0-9]*$"> <!--enter number > 0-->
