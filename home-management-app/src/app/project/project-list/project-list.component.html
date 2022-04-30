@@ -18,10 +18,9 @@
         <tbody>
             <tr *ngFor="let projectItem of projectList; let i = index" >
             <td scope="row"><a style="cursor: pointer"[routerLink]="['/project-details', i]">{{projectItem.name}}</a></td>
-              <td>{{projectItem.room}}</td>
+              <td>{{projectItem.room}}{{projectItem.scope}}</td>
               <td>{{projectItem.description}}</td>
               <td>{{projectItem.status}}</td>
-              <td>{{projectItem.grandTotal | currency}}</td>
               <td>
                 <div class="dropdown" appDropdown>
                   <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" role="button" >Actions</button>

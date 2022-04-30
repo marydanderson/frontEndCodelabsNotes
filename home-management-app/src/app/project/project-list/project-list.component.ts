@@ -30,7 +30,6 @@ export class ProjectListComponent implements OnInit {
     })
     console.log(this.projectList)
 
-
     this.route.paramMap.subscribe((params: ParamMap) => {
        this.id = +params.get('id');
      });

@@ -52,7 +52,6 @@ export class ProjectService {
   getProjects() {
     return this.http.get(
       'https://house-management-91707-default-rtdb.firebaseio.com/projects.json',
-
     )
     .pipe(
       map(responseData => {
@@ -65,7 +64,6 @@ export class ProjectService {
       return projectsArray
       })
     )
-    // return this.myProjects.slice();
   }
 
 
@@ -76,10 +74,10 @@ export class ProjectService {
 
 
   // Create new project
-  addProject(project: Project) {
+  addProject(name: string, room: string, description: string, status: string, grandTotal: number) {
     // http request
     // submit and store to firebase database
-    const projectData: Project = project;
+    const projectData: Project = {name: name, room: room, description: description, status: status, grandTotal: grandTotal }
     this.http.post(
       'https://house-management-91707-default-rtdb.firebaseio.com/projects.json',
       projectData
