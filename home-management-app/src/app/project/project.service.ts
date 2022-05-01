@@ -69,15 +69,31 @@ export class ProjectService {
 
   // Compile Singular Project
   getProject(idx: number) {
-    return this.myProjects.slice()[idx];
+    // return this.myProjects.slice()[idx];
+    return this.http.get(
+      'https://house-management-91707-default-rtdb.firebaseio.com/projects.json',
+    )
+    .pipe(
+      map(responseData => {
+        const projectsArray: Project[] = [];
+        let indvProject: Project;
+        for (const key in responseData) {
+          if (responseData.hasOwnProperty(key)) {
+            projectsArray.push({...responseData[key], id: key})
+            indvProject = projectsArray[idx]
+          }
+        }
+      // return projectsArray
+      return indvProject
+      })
+    )
   }
 
-
   // Create new project
-  addProject(name: string, room: string, description: string, status: string, grandTotal: number) {
+  addProject(addedProject: Project) {
     // http request
     // submit and store to firebase database
-    const projectData: Project = {name: name, room: room, description: description, status: status, grandTotal: grandTotal }
+    const projectData: Project = addedProject;
     this.http.post(
       'https://house-management-91707-default-rtdb.firebaseio.com/projects.json',
       projectData
@@ -86,6 +102,7 @@ export class ProjectService {
       console.log(responseData)
     });
   }
+
 
   // Delete project
   removeproject(idx: number) {

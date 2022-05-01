@@ -22,7 +22,10 @@ export class ProjectDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.idx = +params['id'];
-      this.project = this.projectService.getProject(this.idx);
+      this.projectService.getProject(this.idx).subscribe( project => {
+        // make data fetched from server equal to this component's variables for displaying
+        this.projectInput = project;
+      })
     })
   }
 
