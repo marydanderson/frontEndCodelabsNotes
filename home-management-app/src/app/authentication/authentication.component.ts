@@ -1,7 +1,6 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { AuthResponseData } from './auth.service';
@@ -18,7 +17,7 @@ export class AuthenticationComponent implements OnInit {
   error: string = null; //to show/hide error
 
 
-  constructor(private route: ActivatedRoute, private authService: AuthService) { }
+  constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -58,7 +57,8 @@ export class AuthenticationComponent implements OnInit {
     authObservable.subscribe(
       resData => {
         console.log(resData);
-        this.isLoading = false
+        this.isLoading = false;
+        this.router.navigate(['/homesummary']) //when user is logged in and authenticated, route them to home page
       },
       errorMessage => {
         console.log(errorMessage);

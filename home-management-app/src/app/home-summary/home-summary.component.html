@@ -1,9 +1,7 @@
-<div class="container">
-  <div class="row">
-  </div>
+<div class="container"  *ngIf="isAuthenticated">
   <div class="row">
     <div class="col-7">
-      <app-maintenance-list></app-maintenance-list>
+      <app-maintenance-list ></app-maintenance-list>
     </div>
     <div class="col">
       <app-financial-summary></app-financial-summary>
@@ -11,7 +9,7 @@
   </div>
   <br>
   <div class="row">
-    <div class="col">
+    <div class="col" >
       <app-project-wish></app-project-wish>
     </div>
   </div>
