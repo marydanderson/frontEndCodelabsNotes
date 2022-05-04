@@ -10,6 +10,7 @@ import { InspirationComponent } from "./project/inspiration/inspiration.componen
 import { WorkBreakdownComponent } from "./project/work-breakdown/work-breakdown.component";
 import { ProjectFinancialsComponent } from "./project/project-detail/project-financials/project-financials.component";
 import { ProjectCardComponent } from "./project/project-detail/project-card/project-card.component";
+import { AuthenticationComponent } from "./authentication/authentication.component";
 
 
 const appRoutes: Routes = [
@@ -29,7 +30,10 @@ const appRoutes: Routes = [
   {path: "add-new-project", component: ProjectFormComponent,
   children: [
     {path: "project-submission", component: NewProjectSubmissionComponent}
-  ]}
+  ]},
+  {path: "signup", component: AuthenticationComponent},
+  {path: "login", component: AuthenticationComponent},
+  {path: "auth/:authState", component: AuthenticationComponent}
 ]
 
 @NgModule({

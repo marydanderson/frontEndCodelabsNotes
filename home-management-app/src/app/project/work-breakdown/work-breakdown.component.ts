@@ -9,7 +9,13 @@ import { ProjectService } from '../project.service';
   styleUrls: ['./work-breakdown.component.css']
 })
 export class WorkBreakdownComponent implements OnInit {
-  project: Project;
+  project: Project = new Project (
+    '',
+    '',
+    '',
+    '',
+    0,
+  );
   id: number;
 
   constructor(
@@ -25,7 +31,7 @@ export class WorkBreakdownComponent implements OnInit {
 
     this.route.parent.params.subscribe((params: Params) => {
       this.id = +params['id'];
-      this.project = this.projectService.getProject(this.id)
+      // this.project = this.projectService.getProject(this.id)
       console.log(this.id)
     })
 
@@ -36,6 +42,11 @@ export class WorkBreakdownComponent implements OnInit {
 
   addScope() {
     console.log('test')
+
+  }
+
+  // Retrieve individual project w/ service from database
+  getProject(idx: number) {
 
   }
 }

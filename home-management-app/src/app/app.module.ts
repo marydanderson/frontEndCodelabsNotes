@@ -26,6 +26,8 @@ import { ProjectFinancialsComponent } from './project/project-detail/project-fin
 import { ProjectCardComponent } from './project/project-detail/project-card/project-card.component';
 import { WorkFormComponent } from './project/work-breakdown/work-form/work-form.component';
 import {HttpClientModule} from '@angular/common/http';
+import { AuthenticationComponent } from './authentication/authentication.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import {HttpClientModule} from '@angular/common/http';
     ProjectFinancialsComponent,
     ProjectCardComponent,
     WorkFormComponent,
+    AuthenticationComponent,
+    LoadingSpinnerComponent,
 
   ],
   imports: [

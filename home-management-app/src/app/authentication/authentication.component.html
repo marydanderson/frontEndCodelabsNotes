@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-md-6 offset-3">
+    <div class="alert alert-danger text-center" *ngIf = "error">
+      <p>{{error}}</p>
+    </div>
+    <div *ngIf="isLoading" style="text-align: center">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <form #authForm="ngForm" (ngSubmit)="onSubmitAuth(authForm)" *ngIf="!isLoading">
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email"
+         id="email"
+         class="form-control"
+         ngModel
+         name="email"
+         required
+         email
+         #email="ngModel">
+         <span class="help-block"
+         *ngIf="!email.valid && email.touched">Please enter valid email</span>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          ngModel
+          name="password"
+          required
+          minlength="6"
+          #password="ngModel">
+          <span class="help-block"
+            *ngIf="!password.valid && password.touched">Please enter password minimum 6 characters in length</span>
+      </div>
+      <div>
+        <button
+          class="btn btn-primary" type="submit" *ngIf="loginMode === 'signup'" [disabled]="!authForm.valid">Signup</button>
+        <button class="btn btn-primary" type="submit" *ngIf="loginMode === 'login'" [disabled]="!authForm.valid"> Login</button>
+      </div>
+    </form>
+  </div>
+</div>

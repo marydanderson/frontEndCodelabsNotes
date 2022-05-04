@@ -11,7 +11,7 @@ import { Project } from '../project.model';
 
 export class ProjectCardComponent implements OnInit {
 
-  project: Project;
+  project: Project
   idx: number;
 
   constructor(
@@ -22,8 +22,8 @@ export class ProjectCardComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.idx = +params['id'];
+      // this.project = this.projectService.getProject(this.idx)
 
-      this.project = this.projectService.getProject(this.idx);
       console.log(this.project)
     })
   }

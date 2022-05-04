@@ -22,7 +22,7 @@
           <li class="nav-item">
             <a class="nav-link">Financials</a>
           </li>
-          <li class="nav-item dropdown" appDropdown>
+          <li class="nav-item dropdown" appDropdown (appDropdown)="clickedOutside()">
             <a class="nav-link dropdown-toggle" routerLink="/projects" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Projects
             </a>
@@ -35,9 +35,11 @@
           <li class="nav-item">
             <a class="nav-link">Rooms</a>
           </li>
-
-
         </ul>
       </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><button class="btn btn-primary mx-2" routerLink="/auth/signup">Sign Up</button></li>
+        <li><button class="btn btn-primary" routerLink="/auth/login">Log In</button></li>
+      </ul>
 
   </nav>
