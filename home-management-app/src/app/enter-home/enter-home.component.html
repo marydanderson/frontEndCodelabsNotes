@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-7">
+      <h1>Welcome Home</h1>
+      <h3>Maintain. Design. Budget. Dream.</h3>
+      <br>
+      <button class="btn main-button" type="button" (click)="onLoginClick()">Login</button>
+      <button class="btn main-button mx-2" type="button" (click)="onSignupClick()">Signup </button>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div *ngIf="!isLoginMode && !isSignupMode">
+          <img src="" alt="">
+          PHOTO OF HOUSE HERE
+        </div>
+        <div class="card-header text-center" *ngIf="isLoginMode">Log In</div>
+        <div class="card-header text-center" *ngIf="isSignupMode">Sign Up</div>
+        <div class="card-body">
+          <app-authentication *ngIf="isLoginMode || isSignupMode"></app-authentication>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

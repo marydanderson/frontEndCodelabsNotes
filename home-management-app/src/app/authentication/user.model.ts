@@ -8,7 +8,7 @@ export class User {
     private _tokenExpirationDate: Date //private b/c it shouldn't be retrievable unless we check the validity
   ) { }
 
-  get token() { //getter: looks like a function but acts like property; cannot assign getters to new values (that's a setter)
+  public get token() { //getter: looks like a function but acts like property; cannot assign getters to new values (that's a setter)
     if (!this._tokenExpirationDate || new Date() > this._tokenExpirationDate) {
       // token is expired or doesn't exist
       return null

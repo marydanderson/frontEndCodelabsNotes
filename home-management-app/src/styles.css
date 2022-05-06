@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --eggshell: #f4f1deff;
+  --main-orange: #844D36;
+  --main-navy: #474853;
+  --main-blue: #86B3D1;
+  --main-light-tan: #AAA0A0;
+  --main-tan: #8E8268;
+
+}
+
+html {
+  background-color: var(--main-blue)
+}

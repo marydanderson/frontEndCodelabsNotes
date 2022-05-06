@@ -1,15 +1,22 @@
+:root {
+  --main-orange: #844D36;
+  --main-navy: #474853;
+  --main-blue: #86B3D1;
+  --main-light-tan: #AAA0A0;
+  --main-tan: #8E8268;
 
-.bg-tan {
-  background-color: #EAE7DC;
 }
 
-.bg-dark-tan {
-background-color: #d8c3a5;
 
+.bg-dark-blue {
+  background-color: var(--main-navy)
 }
 
-.dark-watermelon-text {
-  color: #e85a4f
+.navbar-title {
+  color: var(--main-orange);
+  font-family: 'Helvetica';
+  font-size: 2em;
+
 }
 
 

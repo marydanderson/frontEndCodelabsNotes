@@ -1,7 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 import { catchError } from 'rxjs';
 import { throwError } from 'rxjs';
 import { User } from './user.model';
@@ -17,20 +16,28 @@ export interface AuthResponseData {
   registered?: boolean; //required for log in
 }
 
+const SIGN_UP_URL: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=';
+const SIGN_IN_URL: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='
+const AUTH_API_KEY: string = 'AIzaSyBOPeZL5QVUCkGtnEE4-KbJl6r2fS2dZ5o'
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  user = new Subject<User>(); //emit (next) new user whenever we have one (login) or when we logout (clear, logout, or token expired)
+  // user = new Subject<User>(); //emit (next) new user whenever we have one (login) or when we logout (clear, logout, or token expired);
+  // BEHAVIOR SUBJECTS give subscribers IMMEIDATE access to the previously emitted value, even if they haven't been subscribed at the point in time that value was emitted
+  user = new BehaviorSubject<User>(null); //emit (next) new user whenever we have one (login) or when we logout (clear, logout, or token expired);
+
   // currentUser = new User('test@test.com', '5', "",new Date())
   currentUser = null;
+  token: string = null; //get token to feed back to project/data fetching services so data can be fetched from Firebase when a user is authenticated/token created
 
   constructor(private http: HttpClient) { } //
 
   // sign user up by sending request to signup URL at Firebase
   signup(email: string, password: string) {
     // return so it can be subscribed to
-    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBOPeZL5QVUCkGtnEE4-KbJl6r2fS2dZ5o',
+    return this.http.post<AuthResponseData>(SIGN_UP_URL + AUTH_API_KEY,
       // pass in  properties required by Database = email, password, returnSecureToken
       // https://firebase.google.com/docs/reference/rest/auth/#section-create-email-password
       {
@@ -46,7 +53,7 @@ export class AuthService {
 
   // existing user login; http request to firebase
   login(email: string, password: string) {
-    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBOPeZL5QVUCkGtnEE4-KbJl6r2fS2dZ5o',
+    return this.http.post<AuthResponseData>(SIGN_IN_URL+AUTH_API_KEY,
       // pass in  properties required by Database = email, password, returnSecureToken
       {
         email: email,

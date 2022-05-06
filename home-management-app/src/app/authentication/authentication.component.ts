@@ -15,24 +15,23 @@ export class AuthenticationComponent implements OnInit {
   loginMode = '';
   isLoading = false; //to show/hide loading spinner component
   error: string = null; //to show/hide error
+  loginSuccessMessage: string = '';
+  authSubmittedSuccess = false;
 
 
   constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-
-    // Does URL have signup or log in input ted? params = signup or login
-    this.route.params.subscribe( params => {
-      this.loginMode = params['authState'];
-      console.log(this.loginMode)
-    })
-  }
+      // Does URL have signup or log in input ted? params = signup or login
+      this.route.params.subscribe( params => {
+        this.loginMode = params['authState'];
+        console.log(this.loginMode)
+      })
+    }
 
   clearFormViewChange(form: NgForm) {
-
     form.reset()
   }
-
 
   onSubmitAuth(form: NgForm) {
     if (!form.valid) {
@@ -40,6 +39,9 @@ export class AuthenticationComponent implements OnInit {
     }
     const email = form.value.email;
     const password = form.value.password;
+
+    //Message Alerts:
+    this.loginSuccessMessage = 'Welcome home!';
 
     // change status of loading to utlize loading spinner
     this.isLoading = true
@@ -56,9 +58,10 @@ export class AuthenticationComponent implements OnInit {
 
     authObservable.subscribe(
       resData => {
+        this.authSubmittedSuccess = true;
         console.log(resData);
         this.isLoading = false;
-        this.router.navigate(['/homesummary']) //when user is logged in and authenticated, route them to home page
+        // this.router.navigate(['/homesummary']) //when user is logged in and authenticated, route them to home page
       },
       errorMessage => {
         console.log(errorMessage);
@@ -67,6 +70,11 @@ export class AuthenticationComponent implements OnInit {
       }
     )
     form.reset()
+  }
+
+  // close out alert box from alert component stating you've been logged in; REF alert.component
+  onHandleSucces() {
+    this.authSubmittedSuccess = false;
   }
 
 }

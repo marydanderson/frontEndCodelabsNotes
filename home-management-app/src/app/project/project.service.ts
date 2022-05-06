@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { Project } from './project-detail/project.model';
-import { ProjectScope } from './project-scope.model';
-import { map } from 'rxjs/operators';
+import { map, take, exhaustMap } from 'rxjs/operators';
+import { AuthService } from '../authentication/auth.service';
 
 
 @Injectable({
@@ -16,17 +16,23 @@ export class ProjectService {
   projectListChanged = new EventEmitter<Project[]>();
   startedEditing = new Subject<number>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   private myProjects: Project[] = []
 
   // Compile All Projects
   getProjects() {
-    return this.http.get(
-      'https://house-management-91707-default-rtdb.firebaseio.com/projects.json',
-    )
-    .pipe(
+    //NEED TO FIX CODE BELOW. IT SHOULD BE FETCHING DATA AFTER A USER IS LOGGED IN AND TOKEN PASSED
+    return this.authService.user.pipe(take(1), exhaustMap(user => {  //listener_subscribe to if user was created; immmediately unsubscribe after first round of info is obtained (that's what take(1) does) | ony get user once
+      return this.http.get(
+        'https://house-management-91707-default-rtdb.firebaseio.com/projects.json',
+        // {
+        //   params: new HttpParams().set('auth', user.token)
+        // }//provide query parameter w/ token from user
+      );
+    }),
       map(responseData => {
+        console.log('project response data = ' + responseData)
         // const projectsArray: Project[] = [];
         for (const key in responseData) {
           if (responseData.hasOwnProperty(key)) {
@@ -34,11 +40,12 @@ export class ProjectService {
           }
         }
         console.log(this.myProjects)
-
       return this.myProjects
       })
     )
   }
+
+
 
 
   // Compile Singular Project
