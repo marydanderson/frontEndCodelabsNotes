@@ -17,6 +17,7 @@ import { ProjectModule } from './project/project.module';
 import { RoomsModule } from './rooms/rooms-module';
 import { SharedModule } from './shared/shared.module';
 import { EnterHomeComponent } from './enter-home/enter-home.component';
+import { UserHouseMainComponent } from './user-house-main/user-house-main.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { EnterHomeComponent } from './enter-home/enter-home.component';
     HomeSummaryComponent,
     AuthenticationComponent,
     EnterHomeComponent,
+    UserHouseMainComponent,
 
   ],
   imports: [

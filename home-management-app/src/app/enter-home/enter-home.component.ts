@@ -1,28 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-enter-home',
   templateUrl: './enter-home.component.html',
   styleUrls: ['./enter-home.component.css']
 })
+
 export class EnterHomeComponent implements OnInit {
   isLoginMode = false;
   isSignupMode = false;
+  @ViewChild('toggleButton', {read: ElementRef}) toggleButton: ElementRef;
+  @ViewChild('authForm', {read: ElementRef}) authForm: ElementRef;
 
-  constructor() { }
+
+  constructor(private router: Router) {
+
+
+   };
 
   ngOnInit(): void {
   }
 
   onLoginClick() {
-
+    this.isSignupMode = false;
     this.isLoginMode = !this.isLoginMode
   }
 
-  onSignupClick() {
+  btnClickRouteHome() {
+    console.log('route home')
+    this.router.navigateByUrl('/welcomehome');
+  }
 
+  onSignupClick() {
+    this.isLoginMode = false;
     this.isSignupMode = !this.isSignupMode
 
   }
+
+
+
 
 }

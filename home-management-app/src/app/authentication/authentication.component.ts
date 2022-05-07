@@ -48,7 +48,7 @@ export class AuthenticationComponent implements OnInit {
 
     let authObservable: Observable<AuthResponseData>;
 
-    if (this.loginMode === 'login') {
+    if (this.loginMode === 'welcomehome/login') {
       // LOGIN
       authObservable = this.authService.login(email, password)
     } else { // SIGNUP

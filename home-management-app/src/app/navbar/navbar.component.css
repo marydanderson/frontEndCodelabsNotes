@@ -5,8 +5,13 @@
   --main-light-tan: #AAA0A0;
   --main-tan: #8E8268;
 
+
 }
 
+.navbar {
+  padding: 25px;
+  opacity: 90%;
+}
 
 .bg-dark-blue {
   background-color: var(--main-navy)

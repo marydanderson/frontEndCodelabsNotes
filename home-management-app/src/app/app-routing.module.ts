@@ -4,15 +4,22 @@ import { HomeSummaryComponent } from "./home-summary/home-summary.component";
 import { MaintenanceListComponent } from "./maintenance/maintenance-list/maintenance-list.component";
 import { AuthenticationComponent } from "./authentication/authentication.component";
 import { EnterHomeComponent } from "./enter-home/enter-home.component";
+import { UserHouseMainComponent } from "./user-house-main/user-house-main.component";
 
 
 const appRoutes: Routes = [
-  { path: "welcomehome", component: EnterHomeComponent},
+  {
+    path: "welcomehome", component: EnterHomeComponent, children: [
+      { path: "signup", component: AuthenticationComponent },
+      { path: "login", component: AuthenticationComponent}
+    ]
+  },
+  {
+    path: "user-house", component: UserHouseMainComponent, children: [
+    { path: "summary", component: HomeSummaryComponent }
+  ]},
   { path: "", redirectTo: "/welcomehome", pathMatch: "full" },
-  { path: "homesummary", component: HomeSummaryComponent},
   { path: "maintenance", component: MaintenanceListComponent },
-  { path: "signup", component: AuthenticationComponent},
-  { path: "login", component: AuthenticationComponent},
   { path: "auth/:authState", component: AuthenticationComponent}
 ]
 

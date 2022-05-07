@@ -4,20 +4,18 @@
       <h1>Welcome Home</h1>
       <h3>Maintain. Design. Budget. Dream.</h3>
       <br>
-      <button class="btn main-button" type="button" (click)="onLoginClick()">Login</button>
-      <button class="btn main-button mx-2" type="button" (click)="onSignupClick()">Signup </button>
+      <button class="btn main-button" type="button" (click)="onLoginClick()"  routerLink="/welcomehome/login" >Login</button>
+      <button class="btn main-button mx-2" type="button" (click)="onSignupClick()"  routerLink="/welcomehome/signup" >Signup </button>
     </div>
     <div class="col">
       <div class="card">
         <div *ngIf="!isLoginMode && !isSignupMode">
-          <img src="" alt="">
-          PHOTO OF HOUSE HERE
+          <img src="/home-management-app/src/assets/Images/HouseOutline.png" alt="HouseOutline">
         </div>
         <div class="card-header text-center" *ngIf="isLoginMode">Log In</div>
         <div class="card-header text-center" *ngIf="isSignupMode">Sign Up</div>
         <div class="card-body">
-          <app-authentication *ngIf="isLoginMode || isSignupMode"></app-authentication>
-
+          <router-outlet ></router-outlet>
         </div>
       </div>
     </div>
