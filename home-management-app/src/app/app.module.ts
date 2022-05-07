@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -18,6 +18,13 @@ import { RoomsModule } from './rooms/rooms-module';
 import { SharedModule } from './shared/shared.module';
 import { EnterHomeComponent } from './enter-home/enter-home.component';
 import { UserHouseMainComponent } from './user-house-main/user-house-main.component';
+import { environment } from 'src/environments/environment';
+// Firebase
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -42,7 +49,8 @@ import { UserHouseMainComponent } from './user-house-main/user-house-main.compon
     HttpClientModule,
     ProjectModule,
     RoomsModule,
-    SharedModule
+    SharedModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
