@@ -11,19 +11,14 @@ import { ProjectWishComponent } from './project/project-wish/project-wish.compon
 import { HomeSummaryComponent } from './home-summary/home-summary.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { ProjectModule } from './project/project.module';
 import { RoomsModule } from './rooms/rooms-module';
 import { SharedModule } from './shared/shared.module';
 import { EnterHomeComponent } from './enter-home/enter-home.component';
 import { UserHouseMainComponent } from './user-house-main/user-house-main.component';
-import { environment } from 'src/environments/environment';
-// Firebase
-
-
-
-
+import { AuthInterceptorService } from './authentication/auth-interceptor.service';
 
 
 @NgModule({
@@ -52,7 +47,13 @@ import { environment } from 'src/environments/environment';
     SharedModule,
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

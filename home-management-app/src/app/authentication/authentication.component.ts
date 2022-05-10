@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { AuthResponseData } from './auth.service';
@@ -11,7 +11,6 @@ import { AuthResponseData } from './auth.service';
   styleUrls: ['./authentication.component.css']
 })
 export class AuthenticationComponent implements OnInit {
-  // is user in login or signup mode:
   loginMode = '';
   isLoading = false; //to show/hide loading spinner component
   error: string = null; //to show/hide error
@@ -22,53 +21,65 @@ export class AuthenticationComponent implements OnInit {
   constructor(private route: ActivatedRoute, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-      // Does URL have signup or log in input ted? params = signup or login
-      this.route.params.subscribe( params => {
-        this.loginMode = params['authState'];
-        console.log(this.loginMode)
-      })
-    }
+    this.loginMode = (this.router.url.split('/').pop())
+    console.log(this.loginMode)
+
+  }
 
   clearFormViewChange(form: NgForm) {
     form.reset()
   }
 
   onSubmitAuth(form: NgForm) {
+    // Validation check
     if (!form.valid) {
       return;
     }
-    const email = form.value.email;
-    const password = form.value.password;
 
-    //Message Alerts:
-    this.loginSuccessMessage = 'Welcome home!';
+    // Destricture formi input values
+    const { email, password } = form.value;
 
-    // change status of loading to utlize loading spinner
-    this.isLoading = true
-
-    let authObservable: Observable<AuthResponseData>;
-
-    if (this.loginMode === 'welcomehome/login') {
-      // LOGIN
-      authObservable = this.authService.login(email, password)
-    } else { // SIGNUP
-      // send sign in values to be authenticated in service
-      authObservable = this.authService.signup(email, password);
-    }
-
-    authObservable.subscribe(
-      resData => {
-        this.authSubmittedSuccess = true;
-        console.log(resData);
-        this.isLoading = false;
-        // this.router.navigate(['/homesummary']) //when user is logged in and authenticated, route them to home page
+    // Conditional - check if in signup or login mode
+    if (this.loginMode === 'login') {
+      // Sign in logic
+      this.authService.login(email, password).subscribe(resData => {
+        console.log('Auth Sign in Response: ', resData);
+        if (this.error) this.error = null;
+        this.router.navigate(['user-house/summary'])
       },
-      errorMessage => {
-        console.log(errorMessage);
-        this.error = errorMessage;
-        this.isLoading = false;
-      }
-    )
+        (err) => {
+          console.log('Auth sign in error: ', err)
+        }
+      );
+    } else {
+      // Sign up logic
+      this.authService.signup(email, password).subscribe(resData => {
+        console.log('Auth sign up response:', resData)
+        if (this.error) this.error = null;
+        this.router.navigate(['user-house/summary'])
+      },
+        (err) => {
+          console.error('Auth response error: ', err);
+        }
+      )
+    }
+    // //Message Alerts:
+    // this.loginSuccessMessage = 'Welcome home!';
+
+
+    // authObservable.subscribe(
+    //   resData => {
+    //     this.authSubmittedSuccess = true;
+    //     console.log(resData);
+    //     this.isLoading = false;
+    //     // this.router.navigate(['/homesummary']) //when user is logged in and authenticated, route them to home page
+    //   },
+    //   errorMessage => {
+    //     console.log(errorMessage);
+    //     this.error = errorMessage;
+    //     this.isLoading = false;
+    //   }
+    // )
     form.reset()
   }
 

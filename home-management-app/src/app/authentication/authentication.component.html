@@ -1,8 +1,5 @@
 <div class="row">
   <div class="col-md-10 offset-1">
-    <div class="alert alert-danger text-center" *ngIf = "error">
-      <p>{{error}}</p>
-    </div>
     <div *ngIf="isLoading" style="text-align: center">
       <app-loading-spinner></app-loading-spinner>
     </div>
@@ -41,10 +38,7 @@
             *ngIf="!password.valid && password.touched">Please enter password minimum 6 characters in length</span>
       </div>
       <div>
-        <button class="secondary-button">Submit</button>
-        <button
-          class="btn btn-primary" type="submit" *ngIf="loginMode === 'signup'" [disabled]="!authForm.valid">Signup</button>
-        <button class="btn btn-primary" type="submit" *ngIf="loginMode === 'login'" [disabled]="!authForm.valid"> Login</button>
+        <button class="secondary-button" type="submit" [disabled]="!authForm.valid">Submit</button>
       </div>
     </form>
   </div>

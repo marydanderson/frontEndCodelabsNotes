@@ -1,3 +1,21 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400&display=swap');
+
+/* font-family: 'Source Sans Pro', sans-serif; */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+/* font-family: 'Raleway', sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+/* font-family: 'Lato', sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+/* font-family: 'Montserrat', sans-serif; */
+
+
+
 :root {
   --main-orange: #844D36;
   --main-navy: #474853;
@@ -6,16 +24,22 @@
   --main-tan: #8E8268;
 }
 
+
+
 h1 {
-  font-family: 'Helvetica';
-  color: white;
-  font-weight: 400;
-  text-shadow: 1px 1px 2px --main-navy;
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: -2px;
+  color: whitesmoke;
+  font-weight: 500;
   font-size: 6em;
+  text-shadow: 2px 4px 3px rgba(0,0,0,0.3)
+
 
 }
 
 h3 {
+  font-family: 'Lato', sans-serif;
+
   color: var(--main-orange);
   font-size: 2em;
 }
@@ -27,6 +51,8 @@ h3 {
 
 /* CSS */
 .main-button {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 900;
   align-items: center;
   background-color: var(--main-light-tan);
   border-radius: 24px;
@@ -37,12 +63,10 @@ h3 {
   cursor: pointer;
   display: inline-flex;
   fill: currentcolor;
-  font-family: "Google Sans",Roboto,Arial,sans-serif;
   font-size: 14px;
-  font-weight: 500;
   height: 48px;
   justify-content: center;
-  letter-spacing: .25px;
+  letter-spacing: 2px;
   line-height: normal;
   max-width: 100%;
   overflow: visible;

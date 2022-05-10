@@ -26,30 +26,28 @@ const AUTH_API_KEY: string = 'AIzaSyBOPeZL5QVUCkGtnEE4-KbJl6r2fS2dZ5o'
 export class AuthService {
   // user = new Subject<User>(); //emit (next) new user whenever we have one (login) or when we logout (clear, logout, or token expired);
   // BEHAVIOR SUBJECTS give subscribers IMMEIDATE access to the previously emitted value, even if they haven't been subscribed at the point in time that value was emitted
-  user = new BehaviorSubject<User>(null); //emit (next) new user whenever we have one (login) or when we logout (clear, logout, or token expired);
+  currentUser = new BehaviorSubject<User>(null); //emit (next) new user whenever we have one (login) or when we logout (clear, logout, or token expired);
 
-  // currentUser = new User('test@test.com', '5', "",new Date())
-  currentUser = null;
-  token: string = null; //get token to feed back to project/data fetching services so data can be fetched from Firebase when a user is authenticated/token created
+  userToken: string = null; //get token to feed back to project/data fetching services so data can be fetched from Firebase when a user is authenticated/token created
 
   constructor(private http: HttpClient) { } //
 
   // sign user up by sending request to signup URL at Firebase
   signup(email: string, password: string) {
-    // return so it can be subscribed to
-    return this.http.post<AuthResponseData>(SIGN_UP_URL + AUTH_API_KEY,
-      // pass in  properties required by Database = email, password, returnSecureToken
-      // https://firebase.google.com/docs/reference/rest/auth/#section-create-email-password
-      {
-        email: email,
-        password: password,
-        returnSecureToken: true  //should always be true, per firebase docs
-      }
-      // format and return errors that can be generated to show in the DOM; pipe is w/ rxjx and return observable
-    ).pipe(catchError(this.handleError), tap(responseData => {  //tap runs code w/ data from observable, but doesn't mutate it
-      this.handleAuth(responseData.email, responseData.localId, responseData.refreshToken, +responseData.expiresIn)
-    }))
-  };
+    return this.http.post(SIGN_UP_URL + AUTH_API_KEY, {
+      email: email,
+      password: password,
+      returnSecureToken: true,
+    })
+      .pipe(
+        tap((res: AuthResponseData) => {
+        // Use Obj Destructurting to get access to all response values
+          console.log(res)
+          const { email, localId, idToken, expiresIn } = res
+          this.handleAuth(email, localId, idToken, +expiresIn)
+      })
+    );
+  }
 
   // existing user login; http request to firebase
   login(email: string, password: string) {
@@ -61,21 +59,28 @@ export class AuthService {
         returnSecureToken: true  //should always be true, per firebase docs
       }
     ).pipe(catchError(this.handleError), tap(responseData => {  //tap runs code w/ data from observable, but doesn't mutate it
-      this.handleAuth(responseData.email, responseData.localId, responseData.refreshToken, +responseData.expiresIn)
+      const { email, localId, idToken, expiresIn } = responseData;
+      this.handleAuth(email, localId, idToken, +expiresIn)
+      console.log(responseData)
     }))
   };
 
-  private handleAuth(email: string, userId: string, token: string, expiresIn: number) {
+  handleAuth(email: string, userId: string, token: string, expiresIn: number) {
     const expirationDate = new Date //convert exp date in ms to concrete time stamp / Date object
       (new Date().getTime() + expiresIn * 1000); //current date in ms + firebase ID token expiration time 3600 sec | gives exp date in MS,
-    const user = new User( // set user w/ data from server
+    const formUser = new User( // set user w/ data from server
       email,
       userId,
       token,
       expirationDate
     );
-    this.user.next(user) //emit this User as the currently logged in user
+    this.currentUser.next(formUser) //emit this User as the currently logged in user;
+
+    // Save new user in localStorage
+    localStorage.setItem("userData", JSON.stringify(formUser))
   }
+
+  //NEED TO UTILIZE CODE BELOW
 
   private handleError(errorRes: HttpErrorResponse) {
     // Default error message:

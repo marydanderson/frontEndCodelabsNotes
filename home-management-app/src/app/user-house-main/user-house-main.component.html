@@ -1,6 +1,7 @@
-
-  <app-home-summary></app-home-summary>
+<div *ngIf="isAuthenticated">
+  <app-navbar></app-navbar>
   <router-outlet></router-outlet>
+</div>
 
 
 

@@ -50,3 +50,10 @@ input.ng-invalid.ng-touched {
   background: var(--main-tan);
   color: whitesmoke
 }
+
+.secondary-button:disabled {
+  background: var(--main-tan);
+  color: whitesmoke;
+  cursor: not-allowed;
+
+}

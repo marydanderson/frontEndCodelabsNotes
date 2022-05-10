@@ -5,22 +5,32 @@ import { MaintenanceListComponent } from "./maintenance/maintenance-list/mainten
 import { AuthenticationComponent } from "./authentication/authentication.component";
 import { EnterHomeComponent } from "./enter-home/enter-home.component";
 import { UserHouseMainComponent } from "./user-house-main/user-house-main.component";
+import { ProjectListComponent } from "./project/project-list/project-list.component";
+import { InspirationComponent } from "./project/inspiration/inspiration.component";
+import { WorkBreakdownComponent } from "./project/work-breakdown/work-breakdown.component";
+import { ProjectFinancialsComponent } from "./project/project-detail/project-financials/project-financials.component";
+import { ProjectCardComponent } from "./project/project-detail/project-card/project-card.component";
 
 
 const appRoutes: Routes = [
   {
     path: "welcomehome", component: EnterHomeComponent, children: [
       { path: "signup", component: AuthenticationComponent },
-      { path: "login", component: AuthenticationComponent}
+      { path: "login", component: AuthenticationComponent },
     ]
   },
   {
     path: "user-house", component: UserHouseMainComponent, children: [
-    { path: "summary", component: HomeSummaryComponent }
+      { path: "summary", component: HomeSummaryComponent },
+      { path: "projects", component: ProjectListComponent },
+      { path: "inspiration", component: InspirationComponent},
+      { path: "work-breakdown", component: WorkBreakdownComponent},
+      { path: "financials", component: ProjectFinancialsComponent},
+      { path: "general", component: ProjectCardComponent }
   ]},
   { path: "", redirectTo: "/welcomehome", pathMatch: "full" },
   { path: "maintenance", component: MaintenanceListComponent },
-  { path: "auth/:authState", component: AuthenticationComponent}
+
 ]
 
 @NgModule({

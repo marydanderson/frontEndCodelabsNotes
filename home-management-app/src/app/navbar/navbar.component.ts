@@ -15,15 +15,20 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private userSub: Subscription
 
   isToggleMenuOpen: boolean = false;
+  isAuthenticated = false;
 
 
   constructor(private authService: AuthService, private projectService: ProjectService) { }
 
   ngOnInit(): void {
-
+    // When user is created/authenticated, make this component accessible
+    this.authService.currentUser.subscribe((user) => {
+      this.isAuthenticated = !!user;
+    })
   }
 
   ngOnDestroy(): void {
+    this.authService.currentUser.unsubscribe();
 
   }
 

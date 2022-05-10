@@ -22,8 +22,8 @@ export class ProjectService {
 
   // Compile All Projects
   getProjects() {
-    //NEED TO FIX CODE BELOW. IT SHOULD BE FETCHING DATA AFTER A USER IS LOGGED IN AND TOKEN PASSED
-    return this.authService.user.pipe(take(1), exhaustMap(user => {  //listener_subscribe to if user was created; immmediately unsubscribe after first round of info is obtained (that's what take(1) does) | ony get user once
+
+    return this.authService.currentUser.pipe(take(1), exhaustMap(user => {  //listener_subscribe to if user was created; immmediately unsubscribe after first round of info is obtained (that's what take(1) does) | ony get user once
       return this.http.get(
         'https://house-management-91707-default-rtdb.firebaseio.com/projects.json',
         // {
@@ -43,8 +43,9 @@ export class ProjectService {
       return this.myProjects
       })
     )
-  }
 
+
+  }
 
 
 
