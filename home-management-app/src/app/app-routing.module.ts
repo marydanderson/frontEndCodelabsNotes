@@ -10,6 +10,7 @@ import { InspirationComponent } from "./project/inspiration/inspiration.componen
 import { WorkBreakdownComponent } from "./project/work-breakdown/work-breakdown.component";
 import { ProjectFinancialsComponent } from "./project/project-detail/project-financials/project-financials.component";
 import { ProjectCardComponent } from "./project/project-detail/project-card/project-card.component";
+import { AuthGuard } from "./authentication/authguard/authguard.component";
 
 
 const appRoutes: Routes = [
@@ -20,7 +21,8 @@ const appRoutes: Routes = [
     ]
   },
   {
-    path: "user-house", component: UserHouseMainComponent, children: [
+    path: "user-house", component: UserHouseMainComponent, canActivate: [AuthGuard], children: [
+
       { path: "summary", component: HomeSummaryComponent },
       { path: "projects", component: ProjectListComponent },
       { path: "inspiration", component: InspirationComponent},

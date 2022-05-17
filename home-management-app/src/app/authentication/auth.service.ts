@@ -1,8 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, tap } from 'rxjs';
 import { catchError } from 'rxjs';
 import { throwError } from 'rxjs';
+import { UserService } from '../user/user.service';
 import { User } from './user.model';
 
 // define format of data we get from Firebase ; defines how auth response data will look like
@@ -17,8 +19,8 @@ export interface AuthResponseData {
 }
 
 const SIGN_UP_URL: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=';
-const SIGN_IN_URL: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='
-const AUTH_API_KEY: string = 'AIzaSyBOPeZL5QVUCkGtnEE4-KbJl6r2fS2dZ5o'
+const SIGN_IN_URL: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
+const AUTH_API_KEY: string = 'AIzaSyBOPeZL5QVUCkGtnEE4-KbJl6r2fS2dZ5o';
 
 @Injectable({
   providedIn: 'root'
@@ -30,9 +32,26 @@ export class AuthService {
 
   userToken: string = null; //get token to feed back to project/data fetching services so data can be fetched from Firebase when a user is authenticated/token created
 
-  constructor(private http: HttpClient) { } //
+  constructor(private http: HttpClient, private router: Router, private userService: UserService) { } //
 
   // sign user up by sending request to signup URL at Firebase
+  // signup(email: string, password: string) {
+  //   return this.http.post(SIGN_UP_URL + AUTH_API_KEY, {
+  //     email: email,
+  //     password: password,
+  //     returnSecureToken: true,
+  //   })
+  //     .pipe(
+  //       tap((res: AuthResponseData) => {
+  //       // Use Obj Destructurting to get access to all response values
+  //         console.log(res)
+  //         const { email, localId, idToken, expiresIn } = res
+  //         this.handleAuth(email, localId, idToken, +expiresIn)
+  //     })
+  //   );
+  // }
+
+  // USER DATA ATTEMP
   signup(email: string, password: string) {
     return this.http.post(SIGN_UP_URL + AUTH_API_KEY, {
       email: email,
@@ -48,6 +67,12 @@ export class AuthService {
       })
     );
   }
+
+
+
+
+
+
 
   // existing user login; http request to firebase
   login(email: string, password: string) {
@@ -65,7 +90,13 @@ export class AuthService {
     }))
   };
 
-  handleAuth(email: string, userId: string, token: string, expiresIn: number) {
+  // Sign Out
+  signOut() {
+    this.currentUser.next(null);
+    this.router.navigate(['welcomehome']);
+  }
+
+  private handleAuth(email: string, userId: string, token: string, expiresIn: number) {
     const expirationDate = new Date //convert exp date in ms to concrete time stamp / Date object
       (new Date().getTime() + expiresIn * 1000); //current date in ms + firebase ID token expiration time 3600 sec | gives exp date in MS,
     const formUser = new User( // set user w/ data from server
@@ -74,11 +105,14 @@ export class AuthService {
       token,
       expirationDate
     );
+
     this.currentUser.next(formUser) //emit this User as the currently logged in user;
+    this.userService.addUserToDatabase(formUser);
 
     // Save new user in localStorage
     localStorage.setItem("userData", JSON.stringify(formUser))
   }
+
 
   //NEED TO UTILIZE CODE BELOW
 

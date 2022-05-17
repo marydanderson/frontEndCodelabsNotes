@@ -1,13 +1,18 @@
 <div class="row">
   <div class="col-md-10 offset-1">
-    <div *ngIf="isLoading" style="text-align: center">
-      <app-loading-spinner></app-loading-spinner>
-    </div>
     <div>
+      <!-- FOR SUCCESSFUL AUTH -->
       <app-alert
-        [loginSuccessMessage]="loginSuccessMessage"
-        *ngIf="authSubmittedSuccess"
-        (close)="onHandleSucces()"></app-alert>
+        [loginSuccessMessage]="alertMessage"
+        *ngIf="authSuccess"
+        (close)="onHandleSucces()">
+      </app-alert>
+      <!-- FOR ERROR AUTH AFTER SUBMISSION-->
+      <app-alert
+      [loginSuccessMessage]="alertMessage"
+      *ngIf="authError"
+      (close)="onHandleAlertErr()">
+    </app-alert>
     </div>
     <form #authForm="ngForm" (ngSubmit)="onSubmitAuth(authForm)" *ngIf="!isLoading">
       <div class="form-group">

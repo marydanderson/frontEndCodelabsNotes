@@ -1,4 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400&display=swap');
+
+/* font-family: 'Source Sans Pro', sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+/* font-family: 'Raleway', sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+/* font-family: 'Lato', sans-serif; */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+/* font-family: 'Montserrat', sans-serif; */
+
+
 :root {
   --eggshell: #f4f1deff;
   --main-orange: #844D36;
@@ -11,32 +25,6 @@
 
 html {
   background-color: var(--main-blue)
-}
-
-
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400&display=swap');
-
-/* font-family: 'Source Sans Pro', sans-serif; */
-
-
-@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
-/* font-family: 'Raleway', sans-serif; */
-
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
-/* font-family: 'Lato', sans-serif; */
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-/* font-family: 'Montserrat', sans-serif; */
-
-
-
-:root {
-  --main-orange: #844D36;
-  --main-navy: #474853;
-  --main-blue: #86B3D1;
-  --main-light-tan: #AAA0A0;
-  --main-tan: #8E8268;
 }
 
 
@@ -102,6 +90,15 @@ h3 {
 
 .main-button:focus{
   background: var(--main-navy);
+}
+
+.main-button:disabled,
+button[disabled] {
+    border: 1px solid #999999;
+    background-color: darkgrey;
+    color: #fff;
+    padding: 10px;
+    cursor: not-allowed;
 }
 
 .secondary-button {

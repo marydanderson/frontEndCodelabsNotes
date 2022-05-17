@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -19,6 +19,23 @@ import { SharedModule } from './shared/shared.module';
 import { EnterHomeComponent } from './enter-home/enter-home.component';
 import { UserHouseMainComponent } from './user-house-main/user-house-main.component';
 import { AuthInterceptorService } from './authentication/auth-interceptor.service';
+import { LoanAmorizationFormComponent } from './financials/loan-amortization/loan-amorization-form-component';
+import { UserComponent } from './user/user.component';
+
+// Firebase
+// import { environment } from 'src/environments/environment';
+// import { AngularFireModule } from '@angular/fire/compat';
+// import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+// import { initializeApp } from 'firebase/app';
+// import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+// import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+// import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+// import { AngularFireAuth } from '@angular/fire/compat/auth';
+// import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+// import { getStorage, provideStorage } from '@angular/fire/storage';
+
+import { environment } from 'src/environments/environment';
+import { LoanDetailsComponent } from './financials/loan-amortization/loan-details/loan-details.component';
 
 
 @NgModule({
@@ -34,7 +51,9 @@ import { AuthInterceptorService } from './authentication/auth-interceptor.servic
     AuthenticationComponent,
     EnterHomeComponent,
     UserHouseMainComponent,
-
+    LoanAmorizationFormComponent,
+    UserComponent,
+    LoanDetailsComponent
   ],
   imports: [
     BrowserModule, //browser module can only be imported once
@@ -45,7 +64,8 @@ import { AuthInterceptorService } from './authentication/auth-interceptor.servic
     ProjectModule,
     RoomsModule,
     SharedModule,
-
+    // AngularFireModule.initializeApp(environment.firebaseConfig),
+    // AngularFirestoreModule
   ],
   providers: [
     {

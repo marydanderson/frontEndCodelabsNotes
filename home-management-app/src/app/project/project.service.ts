@@ -43,11 +43,7 @@ export class ProjectService {
       return this.myProjects
       })
     )
-
-
   }
-
-
 
   // Compile Singular Project
   getProject(idx: number) {
@@ -66,10 +62,7 @@ export class ProjectService {
     ).subscribe(responseData => {
       // console.log(responseData)
     });
-
-
   }
-
 
   // Delete project
   removeproject(idx: number) {

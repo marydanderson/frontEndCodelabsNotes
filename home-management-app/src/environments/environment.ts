@@ -8,7 +8,10 @@ export const environment = {
     projectId: "house-management-91707",
     storageBucket: "house-management-91707.appspot.com",
     messagingSenderId: "159580911979",
-    appId: "1:159580911979:web:b4f9961b9d16be2169f42e"
+    appId: "1:159580911979:web:cb6112cb881d5fda69f42e"
+
+
   }
 };
+
 

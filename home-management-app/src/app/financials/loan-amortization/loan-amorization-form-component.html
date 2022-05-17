@@ -1,0 +1,138 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <form  #loanAmorizationForm = "ngForm" (ngSubmit)="onSubmit(loanAmorizationForm)">
+            <div class="form-group">
+              <label for="loanAmount">Loan Amount</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+                </div>
+                <input
+                  type="number"
+                  step="1000"
+                  min="1"
+                  class="form-control"
+                  name="loanAmount"
+                  id="loanAmount"
+                  required
+                  ngModel>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="interestRate">Interest Rate</label>
+              <div class="input-group mb-3">
+                <input
+                  type="integer"
+                  min="1"
+                  max="100"
+                  step="1"
+                  class="form-control"
+                  name="interestRate"
+                  id="interestRate"
+                  required
+                  ngModel>
+                <div class="input-group-prepend">
+                  <span class="input-group-text">%</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="loanAmort">Total Loan Duration</label>
+              <div class="input-group mb-3">
+                <input
+                  type="number"
+                  min="1"
+                  step="1"
+                  class="form-control"
+                  name="loanAmort"
+                  id="loanAmort"
+                  required
+                  ngModel>
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">years</span>
+                  </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="loanOriginationDate">Loan Origination Date</label>
+              <div class="input-group mb-3">
+                <input
+                  type="date"
+                  class="form-control"
+                  name="loanOriginationDate"
+                  id="loanOriginationDate"
+                  required
+                  ngModel>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="interestOnlyPeriod">Interest Only Period</label>
+              <div class="input-group mb-3">
+                <input
+                  type="number"
+                  min="0"
+                  class="form-control"
+                  name="interestOnlyPeriod"
+                  id="interestOnlyPeriod"
+                  placeholder="usually 0"
+                  required
+                  ngModel>
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">years</span>
+                  </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="paymentFreq">Payment Frequeny</label>
+              <div class="input-group mb-3">
+                <input
+                  type="number"
+                  min="1" max="12" step="1"
+                  class="form-control"
+                  name="paymentFreq"
+                  id="paymentFreq"
+                  required
+                  ngModel>
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">months</span>
+                  </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="compoundFreq">Compound Frequeny</label>
+              <input
+                type="number"
+                min="1" step="1"
+                class="form-control"
+                name="compoundFreq"
+                id="compoundFreq"
+                placeholder="typically 1"
+                required
+                ngModel>
+            </div>
+            <button class="btn main-button" type="submit" [disabled]="!loanAmorizationForm.valid">Calculate Loan</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Loan Amount
+interest rate
+Loan Amorization (years)
+io = Interest Only Period (years)
+mode = JSON
+pf = payment frequency
+cf = compound frequency
+pt = payment type -->
+
+<!-- Link to API -->
+<!-- https://www.commercialloandirect.com/amortization-schedule-api.html -->
