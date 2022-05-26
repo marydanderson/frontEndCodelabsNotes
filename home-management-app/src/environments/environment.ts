@@ -9,8 +9,6 @@ export const environment = {
     storageBucket: "house-management-91707.appspot.com",
     messagingSenderId: "159580911979",
     appId: "1:159580911979:web:cb6112cb881d5fda69f42e"
-
-
   }
 };
 

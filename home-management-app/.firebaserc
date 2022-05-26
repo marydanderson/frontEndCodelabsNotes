@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "house-management-91707": {
+      "hosting": {
+        "home-management-app": [
+          "house-management-91707"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "house-management-91707"
+  }
+}

@@ -19,23 +19,16 @@ import { SharedModule } from './shared/shared.module';
 import { EnterHomeComponent } from './enter-home/enter-home.component';
 import { UserHouseMainComponent } from './user-house-main/user-house-main.component';
 import { AuthInterceptorService } from './authentication/auth-interceptor.service';
-import { LoanAmorizationFormComponent } from './financials/loan-amortization/loan-amorization-form-component';
 import { UserComponent } from './user/user.component';
+import { LoanAmorizationFormComponent } from './financials/loan-amortization/loan-amorization-form-component';
 
 // Firebase
-// import { environment } from 'src/environments/environment';
-// import { AngularFireModule } from '@angular/fire/compat';
-// import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-// import { initializeApp } from 'firebase/app';
-// import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-// import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-// import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
-// import { AngularFireAuth } from '@angular/fire/compat/auth';
-// import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-// import { getStorage, provideStorage } from '@angular/fire/storage';
-
+import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+
 import { LoanDetailsComponent } from './financials/loan-amortization/loan-details/loan-details.component';
+import { FinancialHomeComponent } from './financials/financial-home/financial-home.component';
 
 
 @NgModule({
@@ -53,7 +46,8 @@ import { LoanDetailsComponent } from './financials/loan-amortization/loan-detail
     UserHouseMainComponent,
     LoanAmorizationFormComponent,
     UserComponent,
-    LoanDetailsComponent
+    LoanDetailsComponent,
+    FinancialHomeComponent,
   ],
   imports: [
     BrowserModule, //browser module can only be imported once
@@ -64,8 +58,8 @@ import { LoanDetailsComponent } from './financials/loan-amortization/loan-detail
     ProjectModule,
     RoomsModule,
     SharedModule,
-    // AngularFireModule.initializeApp(environment.firebaseConfig),
-    // AngularFirestoreModule
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule
   ],
   providers: [
     {

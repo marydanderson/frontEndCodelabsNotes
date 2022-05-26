@@ -1,4 +1,4 @@
-export class Loan {
+export class APILoan {
   constructor(
     public pv: number, //loan amount
     public rate: number, //int rate
@@ -6,8 +6,20 @@ export class Loan {
     public io: number, //interst only period
     public pf: number, // payment frequency
     public cf: number, //compound frequency
-    public pt: 0, //payment type (defaul end of period)
+    public pt: 0, //payment type (default end of period)
     public mode: JSON
+  ) { }
+}
+
+export class LoanFormInput {
+  constructor(
+    public loanAmount: number,
+    public interestRate: number,
+    public loanAmort: number,
+    public loanOriginationDate: number,
+    public interestOnlyPeriod: number,
+    public paymentFreq: number,
+    public compoundFreq: number,
   ) { }
 }
 
@@ -39,7 +51,8 @@ export class LoanApiSummary {
     public prinicpalPlusIntPayment: number,
     public numberPayments: number,
     public periodicIntRate: number,
-    public totalPayments: number
+    public totalPayments: number,
+
   ) { }
 }
 
@@ -47,7 +60,8 @@ export class CompiledLoanDataObject {
   constructor(
     public summary: Object,
     public schedule: Object,
-    public totalInterest: number
+    public totalInterest: number,
+    public purchasePrice: number,
   ) { }
 }
 

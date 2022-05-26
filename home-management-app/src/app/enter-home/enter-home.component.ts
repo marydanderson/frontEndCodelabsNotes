@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoanApiService } from '../financials/loan-api.service';
 
 @Component({
   selector: 'app-enter-home',
@@ -10,16 +11,19 @@ import { Router } from '@angular/router';
 export class EnterHomeComponent implements OnInit {
   isLoginMode = false;
   isSignupMode = false;
+  loanData;
   @ViewChild('toggleButton', {read: ElementRef}) toggleButton: ElementRef;
   @ViewChild('authForm', {read: ElementRef}) authForm: ElementRef;
 
 
-  constructor(private router: Router) {
-
-
+  constructor(private router: Router, private loanService: LoanApiService) {
    };
 
   ngOnInit(): void {
+    this.loanService.loanData.subscribe(value => {
+      this.loanData = value
+      console.log('returned loan data', this.loanData)
+    })
   }
 
   onLoginClick() {
@@ -37,6 +41,15 @@ export class EnterHomeComponent implements OnInit {
     this.isSignupMode = !this.isSignupMode
 
   }
+
+  onGetLoanData() {
+    this.loanService.getLoanData()
+  }
+
+  fireStorePractice(data) {
+    this.loanData.createCoffeeOrder(data)
+  }
+
 
 
 

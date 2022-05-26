@@ -99,6 +99,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "home-management-app:build:production",
+            "firebaseProject": "house-management-91707",
+            "firebaseHostingSite": "house-management-91707"
+          }
         }
       }
     }

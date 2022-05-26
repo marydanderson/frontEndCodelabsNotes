@@ -1,3 +1,16 @@
-input.ng-invalid.ng-touched {
-  border: 1px solid red;
+
+:root {
+  --eggshell: #f4f1deff;
+  --main-orange: #844D36;
+  --main-navy: #474853;
+  --main-blue: #86B3D1;
+  --main-light-tan: #AAA0A0;
+  --main-tan: #8E8268;
+
 }
+
+
+input.ng-invalid.ng-touched {
+  border: 1px solid var(--main-orange);
+}
+

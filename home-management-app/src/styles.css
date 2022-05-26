@@ -132,4 +132,17 @@ button[disabled] {
 }
 
 
+/* for hover over directive to show addt'l text when parent element is hovered over */
+/* .hover-shown-text {
+  background: var(--main-navy);
+  color: white;
+  font-family: 'Lato', sans-serif;
+  opacity: 0;
+  -webkit-transition: visibility 0s, opacity 0.5s linear;
+  transition: visibility 0s, opacity 0.5s linear;
+  text-align: center;
+} */
+
+
+
 

@@ -11,6 +11,8 @@ import { WorkBreakdownComponent } from "./project/work-breakdown/work-breakdown.
 import { ProjectFinancialsComponent } from "./project/project-detail/project-financials/project-financials.component";
 import { ProjectCardComponent } from "./project/project-detail/project-card/project-card.component";
 import { AuthGuard } from "./authentication/authguard/authguard.component";
+import { FinancialHomeComponent } from "./financials/financial-home/financial-home.component";
+import { LoanAmorizationFormComponent } from "./financials/loan-amortization/loan-amorization-form-component";
 
 
 const appRoutes: Routes = [
@@ -27,7 +29,8 @@ const appRoutes: Routes = [
       { path: "projects", component: ProjectListComponent },
       { path: "inspiration", component: InspirationComponent},
       { path: "work-breakdown", component: WorkBreakdownComponent},
-      { path: "financials", component: ProjectFinancialsComponent},
+      { path: "financials", component: FinancialHomeComponent },
+      {path: "loan-form", component: LoanAmorizationFormComponent},
       { path: "general", component: ProjectCardComponent }
   ]},
   { path: "", redirectTo: "/welcomehome", pathMatch: "full" },

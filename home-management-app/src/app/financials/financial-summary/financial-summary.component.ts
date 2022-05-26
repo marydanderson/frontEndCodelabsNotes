@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoanApiService } from '../loan-api.service';
 
 @Component({
   selector: 'app-financial-summary',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FinancialSummaryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loanService: LoanApiService) { }
 
   ngOnInit(): void {
+    this.loanService.getLoanData();
   }
+
+  loanAmount = this.loanService.getLoanData
+  hoverText = false;
 
 }

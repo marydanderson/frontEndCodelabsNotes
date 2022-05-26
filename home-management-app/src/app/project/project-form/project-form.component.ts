@@ -34,7 +34,7 @@ export class ProjectFormComponent implements OnInit {
   constructor(
     private projectService: ProjectService,
     private route: ActivatedRoute,
-    router: Router,
+    private router: Router,
     private http: HttpClient,
     ) { }
 
