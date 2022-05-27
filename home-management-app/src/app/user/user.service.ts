@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { User } from '../authentication/user.model';
 
 
@@ -10,21 +11,21 @@ import { User } from '../authentication/user.model';
 
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private firestore: AngularFirestore) { }
 
 // // Add user to Firebase database
-//   addUserToDatabase(user: UserData) {
-//     this.http.post('https://house-management-91707-default-rtdb.firebaseio.com/users.json',
-//       user
-//     ).subscribe(responseData => console.log('add user database', responseData))
-//   }
+  // addUserToDatabase(user: UserData) {
+  //   this.http.post('https://house-management-91707-default-rtdb.firebaseio.com/users.json',
+  //     user
+  //   ).subscribe(responseData => console.log('add user database', responseData))
+  // }
 
-  // Add user to Firebase database W/ CLI FIREBASE
+  // // Add user to Firestore database W/ CLI FIREBASE
   addUserToDatabase(user: User) {
-    this.http.post('https://house-management-91707-default-rtdb.firebaseio.com/users.json',
-      user
-    ).subscribe(responseData => console.log('add user database', responseData))
-    // this.firestore.collection('Users').add(user)
+    // this.http.post('https://house-management-91707-default-rtdb.firebaseio.com/users.json',
+    //   user
+    // ).subscribe(responseData => console.log('add user database', responseData))
+    this.firestore.collection('Users').add(user)
   }
 
 

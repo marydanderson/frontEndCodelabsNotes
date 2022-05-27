@@ -71,9 +71,6 @@ export class AuthService {
 
 
 
-
-
-
   // existing user login; http request to firebase
   login(email: string, password: string) {
     return this.http.post<AuthResponseData>(SIGN_IN_URL+AUTH_API_KEY,
