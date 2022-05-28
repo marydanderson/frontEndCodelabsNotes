@@ -12,16 +12,12 @@ import { HomeSummaryComponent } from './home-summary/home-summary.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import { AuthenticationComponent } from './authentication/authentication.component';
 import { ProjectModule } from './project/project.module';
 import { RoomsModule } from './rooms/rooms-module';
-import { SharedModule } from './shared/shared.module';
 import { EnterHomeComponent } from './enter-home/enter-home.component';
 import { UserHouseMainComponent } from './user-house-main/user-house-main.component';
-import { AuthInterceptorService } from './authentication/auth-interceptor.service';
-import { UserComponent } from './user/user.component';
 import { LoanAmorizationFormComponent } from './financials/loan-amortization/loan-amorization-form-component';
-
+import { SharedModule } from './shared/shared.module';
 // Firebase
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
@@ -29,7 +25,11 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 import { LoanDetailsComponent } from './financials/loan-amortization/loan-details/loan-details.component';
 import { FinancialHomeComponent } from './financials/financial-home/financial-home.component';
-
+import { AuthService } from './authentication/auth.service';
+import { SignInComponent } from './authentication/sign-in/sign-in.component';
+import { SignUpComponent } from './authentication/sign-up/sign-up.component';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { UpdateUserComponent } from './user/user-profile/update-user/update-user.component';
 
 @NgModule({
   declarations: [
@@ -41,13 +41,15 @@ import { FinancialHomeComponent } from './financials/financial-home/financial-ho
     RoomCarouselComponent,
     ProjectWishComponent,
     HomeSummaryComponent,
-    AuthenticationComponent,
     EnterHomeComponent,
     UserHouseMainComponent,
     LoanAmorizationFormComponent,
-    UserComponent,
     LoanDetailsComponent,
     FinancialHomeComponent,
+    SignInComponent,
+    SignUpComponent,
+    UserProfileComponent,
+    UpdateUserComponent,
   ],
   imports: [
     BrowserModule, //browser module can only be imported once
@@ -62,11 +64,7 @@ import { FinancialHomeComponent } from './financials/financial-home/financial-ho
     AngularFirestoreModule
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptorService,
-      multi: true,
-    }
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

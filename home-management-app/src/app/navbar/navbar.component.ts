@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { AuthService } from '../authentication/auth.service';
 import { ProjectService } from '../project/project.service';
+import { User } from '../user/user';
 
 
 
@@ -11,29 +12,26 @@ import { ProjectService } from '../project/project.service';
   styleUrls: ['./navbar.component.css']
 })
 
-export class NavbarComponent implements OnInit, OnDestroy {
-  private userSub: Subscription
-
-  isToggleMenuOpen: boolean = false;
-  isAuthenticated = false;
+export class NavbarComponent implements OnInit {
+  user: User; //subscribe to user that's logged in from authService; extract key/values for use in HTML
 
 
   constructor(private authService: AuthService, private projectService: ProjectService) { }
 
-  ngOnInit(): void {
-    // When user is created/authenticated, make this component accessible
-    this.authService.currentUser.subscribe((user) => {
-      this.isAuthenticated = !!user;
-    })
-  }
 
-  ngOnDestroy(): void {
-    this.authService.currentUser.unsubscribe();
+  ngOnInit(): void {
+    this.onUserDataChange();
   }
 
   onSignOut() {
-    this.authService.signOut();
+
   }
 
+  onUserDataChange() {
+    this.authService.dataObsevable.subscribe((dataChange) => {
+      this.user = dataChange;
+      console.log('subscribed data change', this.user.displayName);
+    });
+  }
 
 }

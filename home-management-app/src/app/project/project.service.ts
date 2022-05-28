@@ -23,26 +23,6 @@ export class ProjectService {
   // Compile All Projects
   getProjects() {
 
-    return this.authService.currentUser.pipe(take(1), exhaustMap(user => {  //listener_subscribe to if user was created; immmediately unsubscribe after first round of info is obtained (that's what take(1) does) | ony get user once
-      return this.http.get(
-        'https://house-management-91707-default-rtdb.firebaseio.com/projects.json',
-        // {
-        //   params: new HttpParams().set('auth', user.token)
-        // }//provide query parameter w/ token from user
-      );
-    }),
-      map(responseData => {
-        console.log('project response data = ' + responseData)
-        // const projectsArray: Project[] = [];
-        for (const key in responseData) {
-          if (responseData.hasOwnProperty(key)) {
-            this.myProjects.push({...responseData[key], id: key})
-          }
-        }
-        console.log(this.myProjects)
-      return this.myProjects
-      })
-    )
   }
 
   // Compile Singular Project

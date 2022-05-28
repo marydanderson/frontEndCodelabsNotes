@@ -25,23 +25,12 @@ export class ProjectListComponent implements OnInit {
 
   ngOnInit(): void {
     // http request to pre load projects in database
-    this.projectService.getProjects().subscribe( projects => {
-      this.projectList = projects;
-    })
-    console.log(this.projectList)
 
-    this.route.paramMap.subscribe((params: ParamMap) => {
-       this.id = +params.get('id');
-     });
 
   }
 
   getProjects() {
-    // receive data from the server and subscribe to any changes in the data
-    this.projectService.getProjects().subscribe( projects => {
-      // make data fetched from server equal to this component's variables for displaying
-      this.projectList = projects;
-    })
+
   }
 
   removeProject(index: number) {
