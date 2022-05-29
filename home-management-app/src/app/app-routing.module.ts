@@ -14,6 +14,7 @@ import { SignUpComponent } from "./authentication/sign-up/sign-up.component";
 import { SignInComponent } from "./authentication/sign-in/sign-in.component";
 import { AuthGuard } from "./authentication/auth.guard";
 import { UserProfileComponent } from "./user/user-profile/user-profile.component";
+import { UpdateUserComponent } from "./user/user-profile/update-user/update-user.component";
 
 
 const appRoutes: Routes = [
@@ -26,7 +27,10 @@ const appRoutes: Routes = [
   },
   {
     path: "dashboard", component: UserHouseMainComponent, canActivate: [AuthGuard], children: [
-      { path: "user-profile", component: UserProfileComponent },
+      {
+        path: "user-profile", component: UserProfileComponent, children: [
+          {path: "update", component: UpdateUserComponent}
+      ] },
       { path: "summary", component: HomeSummaryComponent },
       { path: "projects", component: ProjectListComponent },
       { path: "inspiration", component: InspirationComponent},

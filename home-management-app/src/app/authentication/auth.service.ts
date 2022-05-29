@@ -71,7 +71,9 @@ export class AuthService {
       localStorage.removeItem('user');
       this.router.navigate(['login']);
     });
-  }
+   }
+
+
 
 
   // set the the user that's been created or signed in to it's associated User Object w/ keys/values; these values exhibit the user profile

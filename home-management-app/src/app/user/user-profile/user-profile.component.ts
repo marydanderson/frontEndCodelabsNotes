@@ -8,7 +8,14 @@ import { User } from '../user';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  user: User;
+  userLoggedIn: User = {
+    uid: '',
+    email: '',
+    displayName: '',
+    photoURL: '',
+  }
+
+  editClicked: boolean = true;
 
   constructor(private authService: AuthService) { }
 
@@ -18,9 +25,13 @@ export class UserProfileComponent implements OnInit {
 
   onUserDataChange() {
     this.authService.dataObsevable.subscribe((dataChange) => {
-      this.user = dataChange;
-      console.log('subscribed data change', this.user.displayName);
-    });
+      this.userLoggedIn = dataChange;
+    })
+  }
+
+  toggleEditProfile() {
+    this.editClicked = false;
+    console.log('edit clicked toggle', this.editClicked)
   }
 
 }
