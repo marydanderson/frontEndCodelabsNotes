@@ -9,7 +9,8 @@ import { ProjectService } from '../project.service';
   styleUrls: ['./work-breakdown.component.css']
 })
 export class WorkBreakdownComponent implements OnInit {
-  project: Project = new Project (
+  project: Project = new Project(
+    '',
     '',
     '',
     '',

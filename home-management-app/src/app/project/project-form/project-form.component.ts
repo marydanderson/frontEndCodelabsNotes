@@ -18,6 +18,7 @@ export class ProjectFormComponent implements OnInit {
   statuses = ['Future', 'Ongoing', 'Completed'];
   id: number;
   projectDetails: Project = {
+    id: '',
     name: '',
     room: '',
     description: '',
@@ -48,7 +49,8 @@ export class ProjectFormComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     // Assign submitted form Project to component projectDetails to push to database
-    this.projectDetails = new Project (
+    this.projectDetails = new Project(
+        '',
         form.value.projectName,
         form.value.projectRoom,
         form.value.projectDescription,
@@ -56,7 +58,6 @@ export class ProjectFormComponent implements OnInit {
         form.value.grandTotal,
     )
     console.log(this.projectDetails)
-
     // Add project to database w/ service
     this.projectService.createProject(this.projectDetails)
     this.submittedStatus = true;

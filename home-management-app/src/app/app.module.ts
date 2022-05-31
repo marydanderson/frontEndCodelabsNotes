@@ -19,9 +19,11 @@ import { UserHouseMainComponent } from './user-house-main/user-house-main.compon
 import { LoanAmorizationFormComponent } from './financials/loan-amortization/loan-amorization-form-component';
 import { SharedModule } from './shared/shared.module';
 // Firebase
-import { AngularFireModule } from '@angular/fire/compat';
+
+import { AngularFireModule } from '@angular/fire/compat'; //This is Firebase
 import { environment } from 'src/environments/environment';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore'; //This is Firestore
+
 
 // End Firebase
 
@@ -63,7 +65,7 @@ import { UpdateUserComponent } from './user/user-profile/update-user/update-user
     RoomsModule,
     SharedModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
   ],
   providers: [
     AuthService

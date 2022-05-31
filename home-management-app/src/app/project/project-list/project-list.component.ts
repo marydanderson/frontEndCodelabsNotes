@@ -22,28 +22,22 @@ export class ProjectListComponent implements OnInit {
 
   constructor(
     private projectService: ProjectService,
-    private route: ActivatedRoute,
-    private http: HttpClient,
     private afs: AngularFirestore,
     private authService: AuthService
     ) { }
 
   ngOnInit(): void {
     // http request to pre load projects in database
-    this.projectService.getProjects().subscribe(data => console.log('data', data));
-
-
+    this.projectService.getProjects().subscribe(projects => {
+      console.log('subscribed projects: ', projects);
+      this.projectList = projects;
+    });
   }
 
 
-  retrieveProjects() {
-    // this.projects.push(this.projectService.getProjects())
 
-
-  }
-
-  removeProject(index: number) {
-
+  removeProject(project) {
+    this.projectService.deleteProject(project)
   }
 
   addNewProjectTrue() {

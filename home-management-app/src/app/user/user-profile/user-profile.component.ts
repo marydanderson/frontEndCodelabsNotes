@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/authentication/auth.service';
 import { User } from '../user';
+import { UserInfoService } from '../user-info.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -17,10 +18,13 @@ export class UserProfileComponent implements OnInit {
 
   editClicked: boolean = true;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private userService: UserInfoService) { }
 
   ngOnInit(): void {
+    // Check which user is logged in
     this.onUserDataChange();
+    // Load User Data:
+
   }
 
   onUserDataChange() {
