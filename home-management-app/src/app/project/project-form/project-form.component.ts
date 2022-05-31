@@ -43,7 +43,6 @@ export class ProjectFormComponent implements OnInit {
       this.id = +params["id"];
     })
 
-    this.projectService.startedEditing.subscribe
 
   }
 
@@ -54,15 +53,13 @@ export class ProjectFormComponent implements OnInit {
         form.value.projectRoom,
         form.value.projectDescription,
         form.value.projectStatus,
-        form.value.grandTotal
+        form.value.grandTotal,
     )
     console.log(this.projectDetails)
 
     // Add project to database w/ service
-    this.projectService.addProject(this.projectDetails)
-
+    this.projectService.createProject(this.projectDetails)
     this.submittedStatus = true;
-
   }
 
   ngOnDestory() {

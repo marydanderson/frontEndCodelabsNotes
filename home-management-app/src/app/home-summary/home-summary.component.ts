@@ -7,9 +7,9 @@ import { AuthService } from '../authentication/auth.service';
   templateUrl: './home-summary.component.html',
   styleUrls: ['./home-summary.component.css']
 })
-export class HomeSummaryComponent implements OnInit, OnDestroy {
+export class HomeSummaryComponent implements OnInit{
   isAuthenticated = false //default value of page [lockout] if user isn't logged in
-  private userSub: Subscription;
+
 
   constructor(private authSerivce: AuthService) { }
 
@@ -19,7 +19,7 @@ export class HomeSummaryComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
-    this.userSub.unsubscribe();
+
   }
 
 }

@@ -16,14 +16,17 @@ export class NavbarComponent implements OnInit {
   user: User; //subscribe to user that's logged in from authService; extract key/values for use in HTML
 
 
-  constructor(private authService: AuthService, private projectService: ProjectService) { }
-
-
-  ngOnInit(): void {
+  constructor(private authService: AuthService, private projectService: ProjectService) {
     this.onUserDataChange();
   }
 
+
+  ngOnInit(): void {
+
+  }
+
   onSignOut() {
+    this.authService.signOut();
 
   }
 

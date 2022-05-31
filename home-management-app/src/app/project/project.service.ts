@@ -1,61 +1,64 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { EventEmitter, Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-
+import { EventEmitter, Injectable, OnInit } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { Project } from './project-detail/project.model';
-import { map, take, exhaustMap } from 'rxjs/operators';
 import { AuthService } from '../authentication/auth.service';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, fromDocRef } from '@angular/fire/compat/firestore';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectService {
+export class ProjectService implements OnInit{
+  projectCollection: AngularFirestoreCollection<Project>;
+  projectObservable: Observable<any>;
+  projectList: Project[];
 
-  projectSelected = new EventEmitter<Project>();
-  projectListChanged = new EventEmitter<Project[]>();
-  startedEditing = new Subject<number>();
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private authService: AuthService, private afs: AngularFirestore,)
+    {}
 
-  private myProjects: Project[] = []
+  ngOnInit(): void {
+    // this.onUserDataChange();
+  }
 
-  // Compile All Projects
+  // Create project to User Specific Firestore database
+  createProject(project: Project) {
+    let userId = this.authService.userData.uid;
+    const projectData: Project = {
+      name: project.name,
+      room: project.room,
+      description: project.description,
+      status: project.status,
+      grandTotal: project.grandTotal
+    };
+    return new Promise<any>((resolve, reject) => {
+      console.log(project.name)
+      this.afs
+        .collection('users')
+        .doc(userId)
+        .collection('projects')
+        .add({ projectData })
+    })
+  }
+
+  // Retrieve all projects for user
   getProjects() {
-
+    return this.afs
+      .collection('users')
+      .doc(this.authService.userData.uid)
+      .collection('projects')
+    .get()
   }
 
-  // Compile Singular Project
-  getProject(idx: number) {
-    return this.myProjects.slice()[idx];
-  }
 
-  // Create new project ; http request
-  addProject(addedProject: Project) {
-    // submit and store to firebase database
-    const projectData: Project = addedProject;
-    // SHOULD I MAKE A PUT FOR ID IN ARRAYS
-    this.http.post(
-      'https://house-management-91707-default-rtdb.firebaseio.com/projects.json',
-      projectData
-      // subscribe to the post request so angular follows thru w/ the response since its listened to
-    ).subscribe(responseData => {
-      // console.log(responseData)
-    });
-  }
 
-  // Delete project
-  removeproject(idx: number) {
-    if (idx !== -1) {
-      this.myProjects.splice(idx,1)
-      this.projectListChanged.emit(this.myProjects.slice())
-    }
+  // Get indv. project; pass in firebase unique id (uid)
+  getProject(projectID) {
+    return this.afs
+      .collection('users')
+      .doc(this.authService.userData.uid)
+      .collection('projects')
+      .valueChanges();
   }
-
-  // Upate project when edited
-  // updateProject(idx: number, newProjectInfo: Project) {
-  //   this.myProjects[idx] = newProjectInfo;
-  //   this.projectListChanged.next(this.myProjects.slice())
-  // }
 
 }

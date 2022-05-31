@@ -23,6 +23,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
+// End Firebase
+
 import { LoanDetailsComponent } from './financials/loan-amortization/loan-details/loan-details.component';
 import { FinancialHomeComponent } from './financials/financial-home/financial-home.component';
 import { AuthService } from './authentication/auth.service';
