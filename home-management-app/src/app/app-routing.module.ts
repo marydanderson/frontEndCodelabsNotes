@@ -15,6 +15,10 @@ import { SignInComponent } from "./authentication/sign-in/sign-in.component";
 import { AuthGuard } from "./authentication/auth.guard";
 import { UserProfileComponent } from "./user/user-profile/user-profile.component";
 import { UpdateUserComponent } from "./user/user-profile/update-user/update-user.component";
+import { ProjectDetailComponent } from "./project/project-detail/project-detail.component";
+import { ProjectFinancialsComponent } from "./project/project-detail/project-financials/project-financials.component";
+import { ProjectFormComponent } from "./project/project-form/project-form.component";
+import { NewProjectSubmissionComponent } from "./project/project-form/new-project-submission/new-project-submission.component";
 
 
 const appRoutes: Routes = [
@@ -27,12 +31,20 @@ const appRoutes: Routes = [
   },
   {
     path: "dashboard", component: UserHouseMainComponent, canActivate: [AuthGuard], children: [
-      {
-        path: "user-profile", component: UserProfileComponent, children: [
+      { path: "user-profile", component: UserProfileComponent, children: [
           {path: "update", component: UpdateUserComponent}
-      ] },
+      ]},
       { path: "summary", component: HomeSummaryComponent },
       { path: "projects", component: ProjectListComponent },
+      { path: "project-details/:id", component: ProjectDetailComponent, children: [
+        { path: "inspiration", component: InspirationComponent},
+        { path: "work-breakdown", component: WorkBreakdownComponent},
+        { path: "financials", component: ProjectFinancialsComponent},
+        { path: "general", component: ProjectCardComponent }
+      ]},
+      {path: "add-new-project", component: ProjectFormComponent, children: [
+        {path: "project-submission", component: NewProjectSubmissionComponent}
+      ]},
       { path: "inspiration", component: InspirationComponent},
       { path: "work-breakdown", component: WorkBreakdownComponent},
       { path: "financials", component: FinancialHomeComponent },

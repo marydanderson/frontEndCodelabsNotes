@@ -1,47 +1,61 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { exhaustMap, map, take } from 'rxjs/operators';
 import { AuthService } from '../authentication/auth.service';
 import { CompiledLoanDataObject, LoanApiSummary } from './loan-amortization/loan-amor.model';
 import { LoanPaymentSchedule } from './loan-amortization/loan-amor.model';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/compat/firestore';
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoanApiService {
+  // loanData = new Subject();
+  loanCollection: AngularFirestoreCollection<CompiledLoanDataObject>;
+  loanData: Observable<CompiledLoanDataObject[]>;
+  loanDoc: AngularFirestoreCollection<CompiledLoanDataObject>;
 
- // FUTURE : make into a Subject
-  // loanData = new EventEmitter();
-  loanData = new Subject();
-
-  private myLoanData: CompiledLoanDataObject;
-
-  constructor(private http: HttpClient, private authService: AuthService ) { }
+  constructor(private http: HttpClient, private authService: AuthService, private afs: AngularFirestore) {
+    this.loanCollection = this.afs
+      .collection('users')
+      .doc(this.authService.userData.uid)
+      .collection('loan');
+   }
 
   // API DOC: https://www.commercialloandirect.com/amortization-schedule-api.html
 
 
 // SAVE loan data from user input, then sent to API, calculated by API and sent back from API, to FIREBASE
   saveLoanData(apiReturn, purchasePrice: number) {
-    const compiledLoanData = new CompiledLoanDataObject(
-      this.saveLoanApiSummaryData(apiReturn),
-      this.saveLoanApiScheduleData(apiReturn),
-      this.calculateTotalInterest(apiReturn),
-      purchasePrice
-    )
-    console.log('compiled data obj', compiledLoanData)
-    // store on firebase
-    this.http.post('https://house-management-91707-default-rtdb.firebaseio.com/financials/loan.json',
-      compiledLoanData
-    ).subscribe(responseData => {
-      responseData
+    const compiledLoanData: CompiledLoanDataObject = {
+      summary: this.saveLoanApiSummaryData(apiReturn),
+      schedule: this.saveLoanApiScheduleData(apiReturn),
+      totalInterest: this.calculateTotalInterest(apiReturn),
+      purchasePrice: purchasePrice
+    }
+    // console.log('compiled data obj', compiledLoanData)
+
+
+    // Store on Firestore
+    this.loanCollection.add(compiledLoanData)
+      .then((dataAdded) => {
+        console.log('compiled loan data API added to firestore: ', dataAdded)
+      })
+      .catch((error) => {
+      console.error('Error adding loan data document', error)
     })
-    this.myLoanData = compiledLoanData;
-    console.log(this.myLoanData)
-    return this.myLoanData
+    // // store on firebase
+    // this.http.post('https://house-management-91707-default-rtdb.firebaseio.com/financials/loan.json',
+    //   compiledLoanData
+    // ).subscribe(responseData => {
+    //   responseData
+    // })
+    // this.myLoanData = compiledLoanData;
+    // console.log(this.myLoanData)
+    // return this.myLoanData
   }
 
   // GET / LOAD LOAN DATA
@@ -50,7 +64,7 @@ export class LoanApiService {
         'https://house-management-91707-default-rtdb.firebaseio.com/financials/loan.json')
         .subscribe(responseData => {
           // emit the data so our components can subscribe to it
-          this.loanData.next(responseData)
+          // this.loanData.next(responseData)
         });
 
   }

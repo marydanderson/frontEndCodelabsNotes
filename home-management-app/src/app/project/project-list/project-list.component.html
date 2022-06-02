@@ -3,7 +3,6 @@
 <div class="container">
   <h1>Projects</h1>
   <button class="btn secondary-button my-2" [routerLink]="['/add-new-project']">Add New Project</button>
-  <p *ngFor="let project of projects">{{project}}</p>
   <div class="row">
     <div class="col">
       <table class="table table-hover">
@@ -19,8 +18,8 @@
         </thead>
         <tbody>
             <tr *ngFor="let projectItem of projectList; let i = index" >
-            <td scope="row"><a style="cursor: pointer"[routerLink]="['/project-details', i]">{{projectItem.name}}</a></td>
-              <td>{{projectItem.room}}{{projectItem.scope}}</td>
+            <td scope="row"><a style="cursor: pointer"[routerLink]="['/dashboard/project-details', projectItem.id]">{{projectItem.name}}</a></td>
+              <td>{{projectItem.room}}</td>
               <td>{{projectItem.description}}</td>
               <td>{{projectItem.status}}</td>
               <td>
@@ -28,11 +27,11 @@
                   <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" role="button" >Actions</button>
                     <div class="dropdown-menu">
                       <a class="dropdown-item" (click)="onEditItem(i)" style="cursor: pointer">Edit</a>
-                      <a class="dropdown-item" (click)="removeProject(i)"  style="cursor: pointer">Delete</a>
+                      <a class="dropdown-item" (click)="removeProject(projectItem)"  style="cursor: pointer">Delete</a>
                     </div>
                 </div>
               </td>
-              <td>{{i}}</td>
+              <td>{{projectItem.id}}</td>
             </tr>
         </tbody>
       </table>

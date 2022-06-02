@@ -13,7 +13,7 @@ import { map } from 'rxjs/operators'
 export class ProjectService implements OnInit{
   projectCollection: AngularFirestoreCollection<Project>
   projects: Observable<Project[]>;
-  projectDoc: AngularFirestoreDocument<Project>;
+  projectDoc: AngularFirestoreDocument<Project>; //for delteting indv. project doc
 
 
   constructor(private authService: AuthService, public afs: AngularFirestore)
@@ -59,11 +59,13 @@ export class ProjectService implements OnInit{
       .collection('projects')
       .add(projectData )
       .then((dataAdded) => {
+        projectData.id = dataAdded.id;
         console.log('Project Added to Firebase: ', dataAdded.id)
       })
       .catch((error) => {
           console.error('Error adding document: ', error)
       })
+    console.log('project id when created: ', projectData.id)
 }
 
   // Retrieve all projects for user
@@ -78,10 +80,14 @@ export class ProjectService implements OnInit{
       .collection('users')
       .doc(this.authService.userData.uid)
       .collection('projects')
-      .valueChanges();
+      .doc(projectID)
+    .get()
   }
 
   deleteProject(project: Project) {
+    console.log(project.id)
+    this.projectDoc = this.afs.doc(`users/${this.authService.userData.uid}/projects/${project.id}`);
+    this.projectDoc.delete();
     // this.projectDoc = this.afs.doc()
   }
 

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ProjectService } from '../project.service';
 import { Project } from './project.model';
@@ -11,6 +12,8 @@ import { Project } from './project.model';
 export class ProjectDetailComponent implements OnInit {
 
   project: Project;
+  projectDoc: AngularFirestoreDocument<Project>
+
   idx: number;
   @Input() projectInput: Project;
 
@@ -21,10 +24,9 @@ export class ProjectDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      this.idx = +params['id'];
-      // this.project = this.projectService.getProject(this.idx)
+      this.idx = params['id'];
+      console.log('project params idx: ', this.idx)
+      // this.projectDoc = this.projectService.getProject(this.idx)
     })
   }
-
-
 }

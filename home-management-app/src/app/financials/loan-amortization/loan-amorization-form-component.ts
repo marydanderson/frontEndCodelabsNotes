@@ -57,7 +57,7 @@ export class LoanAmorizationFormComponent implements OnInit {
         this.loanApiService.calculateUpToYearInterest(apiResponse, this.calculateLoanAge(loanOriginationDate))
 
         // save loan Data (summary, payment summary, total interest)
-        this.loanCompiledData = this.loanApiService.saveLoanData(apiResponse, this.purchasePrice)
+        this.loanApiService.saveLoanData(apiResponse, this.purchasePrice)
       }
       ));
 

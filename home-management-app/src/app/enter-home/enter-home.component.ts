@@ -16,14 +16,11 @@ export class EnterHomeComponent implements OnInit {
   @ViewChild('authForm', {read: ElementRef}) authForm: ElementRef;
 
 
-  constructor(private router: Router, private loanService: LoanApiService) {
+  constructor(private router: Router) {
    };
 
   ngOnInit(): void {
-    this.loanService.loanData.subscribe(value => {
-      this.loanData = value
-      console.log('returned loan data', this.loanData)
-    })
+
   }
 
   onLoginClick() {
@@ -41,16 +38,6 @@ export class EnterHomeComponent implements OnInit {
     this.isSignupMode = !this.isSignupMode
 
   }
-
-  onGetLoanData() {
-    this.loanService.getLoanData()
-  }
-
-  fireStorePractice(data) {
-    this.loanData.createCoffeeOrder(data)
-  }
-
-
 
 
 
