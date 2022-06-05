@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ParamMap } from '@angular/router';
+import { ProjectService } from '../../project.service';
 
 @Component({
   selector: 'app-project-navbar',
@@ -8,14 +9,19 @@ import { ParamMap } from '@angular/router';
   styleUrls: ['./project-navbar.component.css']
 })
 export class ProjectNavbarComponent implements OnInit {
-  id: number;
+  id: string;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private projectService: ProjectService) { }
 
   ngOnInit(): void {
     // get ID for project from routing from parent component
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.id = +params.get('id'); })
+      this.id = params.get('id');
+    })
+    console.log('project id navbar, ', this.id)
+
+    // this.projectService.getProject()
+
   }
 
 }

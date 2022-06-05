@@ -46,7 +46,6 @@ const appRoutes: Routes = [
         {path: "project-submission", component: NewProjectSubmissionComponent}
       ]},
       { path: "inspiration", component: InspirationComponent},
-      { path: "work-breakdown", component: WorkBreakdownComponent},
       { path: "financials", component: FinancialHomeComponent },
       { path: "loan-form", component: LoanAmorizationFormComponent},
       { path: "general", component: ProjectCardComponent },

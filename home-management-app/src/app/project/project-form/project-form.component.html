@@ -80,7 +80,7 @@
             <p>Project Grand Total: {{projectDetails.grandTotal}} </p>
             <div class="text-center">
               <a routerLink="/add-new-project" class="btn btn-primary mx-2">Add Another Project</a>
-              <a routerLink="/projects" class="btn btn-secondary">Return to All Projects</a>
+              <a [routerLink]="['/dashboard/projects']" class="btn btn-secondary">Return to All Projects</a>
             </div>
           </div>
         </div>

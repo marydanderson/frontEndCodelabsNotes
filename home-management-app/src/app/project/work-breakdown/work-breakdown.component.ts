@@ -9,15 +9,8 @@ import { ProjectService } from '../project.service';
   styleUrls: ['./work-breakdown.component.css']
 })
 export class WorkBreakdownComponent implements OnInit {
-  project: Project = new Project(
-    '',
-    '',
-    '',
-    '',
-    '',
-    0,
-  );
-  id: number;
+  project: Project;
+  id: string;
 
   constructor(
     private projectService: ProjectService,
@@ -25,20 +18,15 @@ export class WorkBreakdownComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    // this.route.params.subscribe((params: Params) => {
-    //   this.id = +params['id'];
-    //   console.log(this.id)
-    // })
-
     this.route.parent.params.subscribe((params: Params) => {
-      this.id = +params['id'];
+      this.id = params['id'];
       // this.project = this.projectService.getProject(this.id)
       console.log(this.id)
     })
 
-
-    // this.project = this.projectService.getProject(this.id)
-    // console.log(this.project)
+    this.projectService.getProject(this.id).subscribe(projectData => {
+      this.project = projectData;
+    });
   }
 
   addScope() {
